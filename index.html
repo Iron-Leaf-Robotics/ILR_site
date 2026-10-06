@@ -64,6 +64,7 @@
   .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 4.25rem; }
   .brand { display: flex; align-items: center; gap: .7rem; text-decoration: none; font-weight: 700; letter-spacing: .01em; }
   .brand .logo-mark { width: 34px; height: auto; }
+  .brand .brand-lockup { height: 2.3rem; width: auto; display: block; }
   .nav-links { display: flex; align-items: center; gap: 1.75rem; }
   .nav-links a { text-decoration: none; color: var(--muted); font-size: .95rem; font-weight: 500; }
   .nav-links a:hover, .nav-links a.active { color: var(--text); }
@@ -300,8 +301,7 @@
 <header class="nav">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Iron Leaf Robotics home">
-      <svg class="logo-mark" viewBox="0 0 394 424" aria-hidden="true"><use href="#ilr-mark"/></svg>
-      <span>Iron Leaf Robotics</span>
+      <img class="brand-lockup" src="/assets/ilr-lockup.svg" alt="Iron Leaf Robotics" width="874" height="180">
     </a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
     <nav class="nav-links" id="nav-links" aria-label="Main">
