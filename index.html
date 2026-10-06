@@ -219,24 +219,27 @@
   details.tech .spec .card { background: var(--card-hi); }
 
   /* Sample report */
-  .report { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1rem; margin-top: 3rem; }
+  .report { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 3rem; align-items: start; }
   .report .card { padding: 1.5rem; }
   .report-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
   .report-head h3 { margin: 0; }
   .report-head span { color: var(--muted); font-size: .9rem; }
-  .blockmap { width: 100%; height: auto; display: block; }
+  .mapwrap { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+  .mapwrap img { display: block; width: 100%; height: auto; }
+  .mapwrap img.overlay { position: absolute; inset: 0; height: 100%; }
+  .credit { color: var(--muted); font-size: .78rem; line-height: 1.4; margin: .5rem 0 0; }
   .findings { list-style: none; padding: 0; margin: 0; display: grid; gap: .75rem; }
-  .findings li { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1rem; align-items: center;
+  .findings li { display: grid; grid-template-columns: 8rem 1fr; gap: 1rem; align-items: center;
     padding: .75rem; background: var(--card-hi); border: 1px solid var(--border); border-radius: var(--radius-md); }
-  .thumb { aspect-ratio: 1; border-radius: 10px; border: 1px solid var(--border);
-    background: repeating-linear-gradient(45deg, #183126 0 6px, #122620 6px 12px);
-    display: grid; place-items: center; color: var(--mint); font-weight: 800; }
+  .thumb { aspect-ratio: 4 / 3; border-radius: 10px; border: 1px solid var(--border); overflow: hidden; background: #122620; }
+  .thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .findings b { display: block; }
   .findings small { display: block; color: var(--muted); font-size: .88rem; }
   .tag { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
     color: var(--mint); margin-top: .2rem; }
   .caption { color: var(--muted); font-size: .9rem; margin-top: 1rem; }
   @media (max-width: 52rem) { .report { grid-template-columns: 1fr; } }
+  @media (max-width: 40rem) { .findings li { grid-template-columns: 6rem 1fr; } }
 
   /* Pilot fine print */
   .terms { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; margin-top: 1rem; }
@@ -425,44 +428,31 @@
     <div class="wrap">
       <p class="eyebrow">What you get back</p>
       <h2>A map of your block, with every finding pinned.</h2>
-      <p class="lead">After a pass, you get a short report: where each confirmed finding is and what it looks like, so you can go straight to it.</p>
+      <p class="lead">After a visit, you get a short report: a map of where each mark is, and what the cameras saw there, so you can go straight to it.</p>
 
       <div class="report">
         <div class="card">
           <div class="report-head">
-            <h3>Block 4, north end</h3>
-            <span>Example pass</span>
+            <h3>Okanagan vineyard</h3>
+            <span>Sample visit</span>
           </div>
-          <svg class="blockmap" viewBox="0 0 480 300" role="img" aria-label="Example block map with three findings marked">
-            <rect x="0" y="0" width="480" height="300" rx="14" fill="#0C1A14"/>
-            <defs>
-              <g id="treeRow" fill="#2B5A43">
-                <circle cx="0" cy="30" r="5"/><circle cx="0" cy="60" r="5"/><circle cx="0" cy="90" r="5"/><circle cx="0" cy="120" r="5"/>
-                <circle cx="0" cy="150" r="5"/><circle cx="0" cy="180" r="5"/><circle cx="0" cy="210" r="5"/><circle cx="0" cy="240" r="5"/><circle cx="0" cy="270" r="5"/>
-              </g>
-            </defs>
-            <g>
-              <use href="#treeRow" x="40"/><use href="#treeRow" x="90"/><use href="#treeRow" x="140"/><use href="#treeRow" x="190"/>
-              <use href="#treeRow" x="240"/><use href="#treeRow" x="290"/><use href="#treeRow" x="340"/><use href="#treeRow" x="390"/><use href="#treeRow" x="440"/>
-            </g>
-            <line x1="215" y1="20" x2="215" y2="280" stroke="#5FE3A1" stroke-width="2" stroke-dasharray="4 6" opacity=".5"/>
-            <g font-family="Inter, -apple-system, sans-serif" font-size="12" font-weight="800" text-anchor="middle">
-              <circle cx="115" cy="75" r="11" fill="#5FE3A1"/><text x="115" y="79" fill="#0A1510">1</text>
-              <circle cx="215" cy="165" r="11" fill="#5FE3A1"/><text x="215" y="169" fill="#0A1510">2</text>
-              <circle cx="365" cy="225" r="11" fill="#5FE3A1"/><text x="365" y="229" fill="#0A1510">3</text>
-            </g>
-          </svg>
+          <div class="mapwrap">
+            <img src="/sample-report/map.webp" width="1400" height="1994" loading="lazy" alt="Aerial view of a vineyard with the rows the cart scanned, its path, and each numbered operator mark drawn on top">
+            <img class="overlay" src="/sample-report/map-overlay.svg" alt="" aria-hidden="true">
+          </div>
+          <p class="credit">Imagery: City of Kelowna, 2021. Contains information licensed under the Open Government Licence – City of Kelowna.</p>
         </div>
         <div class="card">
-          <div class="report-head"><h3>Confirmed findings</h3><span>3 this pass</span></div>
+          <div class="report-head"><h3>What the cart saw</h3><span>4 of 14 marks</span></div>
           <ul class="findings">
-            <li><div class="thumb">1</div><div><b>Fresh gopher mound</b><small>Row 3, between trees 2 and 3</small><span class="tag">Confirmed by reviewer</span></div></li>
-            <li><div class="thumb">2</div><div><b>Fresh gopher mound</b><small>Row 5, tree 6, east side</small><span class="tag">Confirmed by reviewer</span></div></li>
-            <li><div class="thumb">3</div><div><b>Fresh gopher mound</b><small>Row 8, tree 8</small><span class="tag">Confirmed by reviewer</span></div></li>
+            <li><div class="thumb"><img src="/sample-report/photo-2.webp" width="840" height="630" loading="lazy" alt="Camera frame for mark 2, with the mound boxed"></div><div><b>Mark #2</b><small>Row A1, 25 m from N end</small><span class="tag">Marked by operator (gopher)</span></div></li>
+            <li><div class="thumb"><img src="/sample-report/photo-5.webp" width="840" height="630" loading="lazy" alt="Camera frame for mark 5, with the mound boxed"></div><div><b>Mark #5</b><small>Row A2, 18 m from N end</small><span class="tag">Marked by operator (gopher)</span></div></li>
+            <li><div class="thumb"><img src="/sample-report/photo-10.webp" width="840" height="630" loading="lazy" alt="Camera frame for mark 10, with the mound boxed"></div><div><b>Mark #10</b><small>Row B1, 1–7 m from W end</small><span class="tag">Marked by operator (gopher)</span></div></li>
+            <li><div class="thumb"><img src="/sample-report/photo-13.webp" width="840" height="630" loading="lazy" alt="Camera frame for mark 13, with the mound boxed"></div><div><b>Mark #13</b><small>Off the rows, 4 m S of Row B1, 75 m from its W end</small><span class="tag">Marked by operator (gopher)</span></div></li>
           </ul>
         </div>
       </div>
-      <p class="caption">Illustrative example only. Real reports use images and positions from your own rows. <a href="/sample-report/" style="color:var(--mint)">See a sample report from a real visit</a>, grower details removed with permission.</p>
+      <p class="caption">A real example from a demo visit to an Okanagan vineyard, grower details removed with permission. Marks are spots to check on the ground, not confirmed findings. <a href="/sample-report/" style="color:var(--mint)">See the full sample report</a>.</p>
     </div>
   </section>
 
