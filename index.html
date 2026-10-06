@@ -119,9 +119,8 @@
   .btn.primary { background: var(--mint); color: var(--bg); border-color: var(--mint); }
   .btn.primary:hover { background: #7DEDB5; }
   .btn.ghost:hover { background: var(--card); }
-  /* Placeholders until cart photos are added: replace each empty div with an <img> */
-  .hero-photos { justify-self: center; width: min(100%, 26rem); display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
-  .hero-photos > * { aspect-ratio: 4 / 3; background: #28312C; border: 1px solid var(--border); border-radius: var(--radius-md); object-fit: cover; }
+  .hero-photos { justify-self: center; width: min(100%, 24rem); display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+  .hero-photos img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; background: #28312C; border: 1px solid var(--border); border-radius: var(--radius-md); }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   @media (max-width: 52rem) {
     .hero { padding-top: 3rem; }
@@ -328,8 +327,11 @@
           <a class="btn ghost" href="#report">See what you get back</a>
         </div>
       </div>
-      <div class="hero-photos" aria-hidden="true">
-        <div></div><div></div><div></div><div></div>
+      <div class="hero-photos">
+        <img src="/assets/cart-crossbar.webp" width="600" height="800" alt="The sensor cart's front crossbar with four cameras and a phone mount, in an apple orchard">
+        <img src="/assets/cart-orchard-side.webp" width="600" height="800" alt="The sensor cart between rows of apple trees, seen from the side">
+        <img src="/assets/cart-orchard-row.webp" width="600" height="800" alt="The sensor cart in an orchard row at dusk">
+        <img src="/assets/cart-vineyard.webp" width="600" height="800" alt="The sensor cart between vine rows, with Kelowna and the hills behind">
       </div>
     </div>
   </section>
