@@ -321,7 +321,7 @@
       <div>
         <p class="eyebrow">Field robotics · Kelowna, BC</p>
         <h1>Plant-level data for orchards and vineyards.</h1>
-        <p class="lead">Iron Leaf Robotics builds a sensor cart that records every row it passes, so growers can find gopher damage sooner and know exactly where it is, with irrigation issues and canopy health on the roadmap.</p>
+        <p class="lead">Iron Leaf Robotics builds a sensor cart that records every row it passes, so growers can find gopher damage sooner and know where it is, with irrigation issues and canopy health on the roadmap.</p>
         <div class="actions">
           <a class="btn primary" href="#pilots">See how a pilot works</a>
           <a class="btn ghost" href="#report">See what you get back</a>
@@ -364,12 +364,12 @@
     <div class="wrap">
       <p class="eyebrow">The platform</p>
       <h2>Walk the row once. Know what's in it.</h2>
-      <p class="lead">An operator pushes the cart down the row at walking pace. It records the ground and canopy on both sides, and every finding comes back tied to a place in the block.</p>
+      <p class="lead">An operator pushes the cart down the row at walking pace. It records the ground along the row, and every finding comes back tied to a place in the block.</p>
 
       <div class="grid outcomes">
         <div class="card">
           <h3>Spot gopher activity early</h3>
-          <p>Fresh mounds are flagged from the imagery, so you can act before damage spreads to the roots.</p>
+          <p>Mounds are marked during the pass and checked against the camera frames, so you can act sooner.</p>
         </div>
         <div class="card">
           <h3>Go straight to the problem</h3>
@@ -389,7 +389,7 @@
         </li>
         <li class="card">
           <h3>Capture</h3>
-          <p>Cameras, lidar and position data record continuously, with detail shots at each stop.</p>
+          <p>Cameras, lidar and GPS record continuously, and the operator marks anything worth a closer look.</p>
         </li>
         <li class="card">
           <h3>Review</h3>
@@ -405,20 +405,16 @@
         <summary>Technical details</summary>
         <div class="spec">
           <div class="card">
-            <h3>Navigation, colour and near-infrared cameras</h3>
-            <p>Continuous video for coverage, plus high-resolution colour and NIR bursts at each stop.</p>
+            <h3>Colour cameras</h3>
+            <p>Colour cameras record continuously as the cart moves. Higher-resolution and near-infrared cameras are planned.</p>
           </div>
           <div class="card">
             <h3>Lidar, GPS and IMU</h3>
-            <p>Shape and location data so each finding maps back to a specific spot in the block.</p>
-          </div>
-          <div class="card">
-            <h3>One clock for every sensor</h3>
-            <p>All imagery is timestamped, so cameras, lidar and position line up after the fact.</p>
+            <p>Shape and location data so each finding maps back to a row and position in the block.</p>
           </div>
           <div class="card">
             <h3>Self-contained</h3>
-            <p>Battery powered, with its own onboard network, a phone-based operator app and LTE for getting data out of the field.</p>
+            <p>Battery powered, with its own onboard network and a phone-based operator app, so it needs no Wi-Fi or power in the block.</p>
           </div>
         </div>
       </details>
@@ -454,7 +450,7 @@
           </ul>
         </div>
       </div>
-      <p class="caption">A real example from a demo visit to an Okanagan vineyard, grower details removed with permission. Each mound was confirmed by a reviewer from the camera frame. <a href="/sample-report/" style="color:var(--mint)">See the full sample report</a>.</p>
+      <p class="caption">A real example from a demo visit to an Okanagan vineyard, grower details removed with permission. Each mound shown was confirmed by a reviewer from the camera frame. <a href="/sample-report/" style="color:var(--mint)">See the full sample report</a>.</p>
     </div>
   </section>
 
@@ -477,7 +473,7 @@
         </li>
         <li class="card">
           <h3>Review</h3>
-          <p>Every candidate finding is checked by a person. Nothing reaches you unconfirmed.</p>
+          <p>Every candidate finding is checked by a person, and anything we couldn't confirm is marked that way.</p>
         </li>
         <li class="card">
           <h3>Your report</h3>
@@ -488,11 +484,11 @@
       <div class="terms">
         <div class="card">
           <h3>Cost</h3>
-          <p>Demos are free. Paid pilots are scoped with you based on your blocks and what you want to learn.</p>
+          <p>Demos and pilots are free while we develop the cart.</p>
         </div>
         <div class="card">
           <h3>Your data</h3>
-          <p>You own the raw data collected on your land and the findings in your reports. We use the data to train and improve our models, which we own, and never share your farm's data identified as yours.</p>
+          <p>You own the raw data collected on your land. We keep a copy to train our detection models, and delete it after training if you ask.</p>
         </div>
         <div class="card">
           <h3>Disruption</h3>
@@ -523,7 +519,7 @@
           <span class="pill status s-test">In field testing</span>
           <ul>
             <li>Data collection runs on Okanagan orchards and vineyards, fall 2026</li>
-            <li>Gopher mound detection on real rows</li>
+            <li>Gopher mound detection, with the model in training on our field data</li>
           </ul>
         </div>
         <div class="card">
@@ -562,7 +558,7 @@
         <li class="now">
           <time>Fall 2026</time>
           <h3>Find gopher damage before it spreads</h3>
-          <p>Field pilots with Okanagan growers, with every mound confirmed by a reviewer.</p>
+          <p>Free field demos with Okanagan growers, with each finding checked by a reviewer.</p>
         </li>
         <li>
           <time>Late 2026</time>
@@ -595,7 +591,7 @@
         </details>
         <details>
           <summary>Do I need Wi-Fi or power in the block?</summary>
-          <p>No. The cart runs on its own battery and carries its own network, with LTE for sending data out of the field.</p>
+          <p>No. The cart runs on its own battery and carries its own network.</p>
         </details>
         <details>
           <summary>Will it slow down my crew?</summary>
@@ -603,7 +599,7 @@
         </details>
         <details>
           <summary>What happens to my data?</summary>
-          <p>You own the raw data collected on your land and the findings in your reports. We use the data to train and improve our models, which we own, and never share your farm's data identified as yours.</p>
+          <p>You own the raw data collected on your land. We keep a copy to train our detection models, and delete it after training if you ask.</p>
         </details>
         <details>
           <summary>Where do you operate?</summary>
@@ -621,7 +617,7 @@
         <h2>Built in the Okanagan, guided by growers.</h2>
       </div>
       <div class="prose">
-        <p>Iron Leaf Robotics was founded in Kelowna by Ryan Collins, an electrical and controls EIT with a background in industrial robotics, automation and aerospace engineering.</p>
+        <p>Iron Leaf Robotics was founded in Kelowna by Ryan Collins, a controls EIT with a background in industrial robotics, automation and aerospace engineering.</p>
         <p>We design and build the cart in-house, and test it on local orchards and vineyards. That keeps iteration fast and keeps the work tied to problems growers actually have.</p>
         <p>Our approach is to understand why the established answer exists before replacing it, and to only count what the field data supports.</p>
       </div>
@@ -641,7 +637,7 @@
         <div class="actions">
           <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSe5dzY7OfdAvxtrpBQ2OQt7nHWoGa4omEySV5xiUur_IMOnBg/viewform" target="_blank" rel="noopener">Request a demo</a>
           <a class="btn ghost" href="mailto:hello@ironleafrobotics.ca?subject=Pilot%20inquiry">hello@ironleafrobotics.ca</a>
-          <a class="btn ghost" href="/sample-report/">View example reports</a>
+          <a class="btn ghost" href="/sample-report/">View the sample report</a>
         </div>
         <p class="caption">See our <a href="/privacy.html" style="color:var(--mint)">privacy policy</a> for how we handle your information.</p>
       </div>
