@@ -414,7 +414,7 @@
                 <div class="shade"></div>
               </div>
               <div class="layer review" data-step="2">
-                <img src="/sample-report/photo-5.webp" width="840" height="630" loading="lazy" alt="A camera frame from the cart with a gopher mound boxed by a reviewer">
+                <img src="/sample-report/photo-5.webp" width="840" height="630" loading="lazy" alt="A camera frame from the cart with a boxed gopher mound">
                 <div class="shade"></div>
                 <span class="chip mint layer-tag"><span class="dot"></span>Confirmed by reviewer</span>
               </div>
@@ -478,7 +478,7 @@
           <p class="eyebrow"><span class="num">03</span>What the cart sees</p>
           <h2>What the cameras are learning to find.</h2>
         </div>
-        <p class="lead reveal" style="--i:1">We label the cart's footage for three kinds of findings. Every clip says where its labels came from: drawn by hand, or proposed by a model and checked by a person.</p>
+        <p class="lead reveal" style="--i:1">Our first models rank gopher-mound frames and test box detection. Grower reports stay human-confirmed. Irrigation and canopy work are on the roadmap.</p>
       </div>
 
       <div class="tabs reveal" role="tablist" aria-label="Finding types">
@@ -489,16 +489,16 @@
 
       <div class="sees-panel reveal" role="tabpanel" id="panel-gophers" aria-labelledby="tab-gophers">
         <div class="sees-media" data-clip-cat="gophers">
-          <img src="/sample-report/photo-10.webp" width="840" height="630" loading="lazy" alt="A cart camera frame with a gopher mound boxed by a reviewer" style="width:100%;height:100%;object-fit:cover">
+          <img src="/sample-report/photo-10.webp" width="840" height="630" loading="lazy" alt="A cart camera frame with a boxed gopher mound" style="width:100%;height:100%;object-fit:cover">
           <div class="shade"></div>
-          <div class="chips" data-clip-chips><span class="chip prov hand">Box drawn by a reviewer</span></div>
+          <div class="chips" data-clip-chips><span class="chip prov hand">Confirmed by reviewer</span></div>
         </div>
         <div class="sees-copy">
           <span class="chip mint"><span class="dot"></span>In field testing</span>
           <h3>Gopher mounds</h3>
-          <p>Each mound is labelled by age, fresh or old, so new activity stands out from damage that's already done. Mounds shown in a report are confirmed by a reviewer from the camera frame first.</p>
+          <p>Grower reports stay human-confirmed. Gopher detection is still a prototype; field accuracy has not been validated.</p>
           <ul>
-            <li><span>Labelled</span><span>Mound location, fresh or old</span></li>
+            <li><span>Status</span><span>Prototype detection</span></li>
             <li><span>Model</span><span>In training on our field data</span></li>
             <li><span>In reports</span><span>Reviewer-confirmed frames</span></li>
           </ul>
@@ -507,16 +507,16 @@
 
       <div class="sees-panel" role="tabpanel" id="panel-stakes" aria-labelledby="tab-stakes" hidden>
         <div class="sees-media" data-clip-cat="stakes">
-          <div class="pending-media"><div><b>Stake clips</b>Being cut from the field runs</div></div>
+          <div class="pending-media"><div><b>Stake clips</b>No clip published yet</div></div>
           <div class="shade"></div>
           <div class="chips" data-clip-chips></div>
         </div>
         <div class="sees-copy">
           <span class="chip amber"><span class="dot"></span>In development</span>
           <h3>Irrigation stakes</h3>
-          <p>Stakes are labelled by how far they lean, so the cart can learn to spot fallen and leaning stakes.</p>
+          <p>Irrigation-stake checks are a grower-requested direction for the cart.</p>
           <ul>
-            <li><span>Labelled</span><span>Stake location, lean angle</span></li>
+            <li><span>Focus</span><span>Irrigation-stake checks</span></li>
             <li><span>Model</span><span>In development</span></li>
           </ul>
         </div>
@@ -524,16 +524,16 @@
 
       <div class="sees-panel" role="tabpanel" id="panel-canopy" aria-labelledby="tab-canopy" hidden>
         <div class="sees-media" data-clip-cat="canopy">
-          <div class="pending-media"><div><b>Canopy clips</b>Being cut from the field runs</div></div>
+          <div class="pending-media"><div><b>Canopy clips</b>No clip published yet</div></div>
           <div class="shade"></div>
           <div class="chips" data-clip-chips></div>
         </div>
         <div class="sees-copy">
           <span class="chip"><span class="dot"></span>Early work</span>
           <h3>Canopy and dripline</h3>
-          <p>Early work on finding the dripline and canopy edge, so ground and canopy can be read from the same pass.</p>
+          <p>Canopy scanning is planned; it is not a validated capability today.</p>
           <ul>
-            <li><span>Labelled</span><span>Dripline, canopy edge</span></li>
+            <li><span>Status</span><span>Planned canopy scanning</span></li>
             <li><span>On the roadmap</span><span>Late 2026</span></li>
           </ul>
         </div>
@@ -567,12 +567,6 @@
           <p class="credit">Imagery: City of Kelowna, 2021. Contains information licensed under the Open Government Licence – City of Kelowna.</p>
         </div>
         <div class="reveal" style="--i:1">
-          <div class="stats" data-count-group>
-            <div><b data-count="3">3</b><small>Rows scanned</small></div>
-            <div><b data-count="222" data-suffix=" m">222 m</b><small>Of row covered</small></div>
-            <div><b data-count="14">14</b><small>Marked by operator</small></div>
-            <div><b data-count="4.9" data-decimals="1">4.9</b><small>Marks per 100 m of row</small></div>
-          </div>
           <div class="panel">
             <div class="panel-head"><h3>What the cart saw</h3><span>4 of 14 marks</span></div>
             <ul class="findings">
@@ -629,10 +623,10 @@
         <p class="lead reveal" style="--i:1">The cart's frame and interfaces are built so new capabilities bolt on without redesigning what already works.</p>
       </div>
       <ol class="roadmap">
-        <li class="now reveal" style="--i:0"><time>Fall 2026 · Now</time><h3>Find gopher damage before it spreads</h3><p>Free field demos with Okanagan growers, with each finding checked by a reviewer.</p></li>
+        <li class="now reveal" style="--i:0"><time>Fall 2026 · Now</time><h3>Record gopher activity for review</h3><p>Free field demos with Okanagan growers, with each finding checked by a reviewer.</p></li>
         <li class="reveal" style="--i:1"><time>Late 2026</time><h3>Ground and canopy in the same pass</h3><p>Ground issues and canopy condition recorded alongside gopher activity, without a second walk.</p></li>
-        <li class="reveal" style="--i:2"><time>2027</time><h3>Soil and leaves, tree by tree</h3><p>A soil probe and leaf scanner, so decisions can be made per tree instead of per block.</p></li>
-        <li class="reveal" style="--i:3"><time>Beyond</time><h3>Less walking, more doing</h3><p>The same platform taking on more of the work itself, such as weeding and pruning.</p></li>
+        <li class="reveal" style="--i:2"><time>2027</time><h3>Leaf scanner</h3><p>A leaf scanner is planned for 2027. Soil-probe timing depends on scanner progress and the YC outcome.</p></li>
+        <li class="reveal" style="--i:3"><time>Beyond</time><h3>Less walking, more doing</h3><p>Under-row weeder field testing is planned for 2028. Pruning follows on a robot of its own, with no date set.</p></li>
       </ol>
     </div>
   </section>
