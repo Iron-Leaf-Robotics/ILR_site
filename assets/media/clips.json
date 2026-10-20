@@ -19,7 +19,7 @@
         "poster": "/assets/media/pass-capture/pass-capture-poster.webp"
       },
       "fps": 30,
-      "duration": 13.27,
+      "duration": 15.0,
       "category": "gophers",
       "labels": "none",
       "title": "Capture",
@@ -59,7 +59,7 @@
         "poster": "/assets/media/pass-review/pass-review-poster.webp"
       },
       "fps": 30,
-      "duration": 13.27,
+      "duration": 15.0,
       "category": "gophers",
       "labels": "model-reviewed",
       "title": "Review",
@@ -76,7 +76,7 @@
       "category": "cart",
       "labels": "model-reviewed",
       "title": "The cart on a row pass",
-      "caption": "One field day: apple and cherry rows from the cart-mounted phone, a cart camera frame with prototype model boxes, and the block map with operator marks.",
+      "caption": "One field day: the cart and its camera bar, apple and cherry rows, a cart camera frame with prototype model boxes, and the block map with operator marks.",
       "site": "Okanagan orchard",
       "date": "2026-10",
       "camera": "Phone",
@@ -87,7 +87,7 @@
         "poster": "/assets/media/field-hero/field-hero-poster.webp"
       },
       "fps": 30,
-      "duration": 8.47
+      "duration": 7.5
     },
     {
       "id": "field-tracking",
@@ -214,7 +214,7 @@
         "poster": "/assets/media/gophers-age-01/gophers-age-01-poster.webp"
       },
       "fps": 30,
-      "duration": 13.27,
+      "duration": 19.97,
       "site": "Okanagan orchard",
       "date": "2026-10"
     },
