@@ -141,25 +141,41 @@
     },
     {
       "id": "gophers-age-01",
-      "status": "pending",
-      "public": false,
+      "status": "ready",
+      "public": true,
       "category": "gophers",
-      "labels": "hand",
-      "title": "Gopher mounds, labelled by age",
-      "caption": "Fresh and old mounds labelled on cart footage.",
+      "labels": "model-reviewed",
+      "title": "Gopher mounds: prototype model",
+      "caption": "Placeholder from an earlier prototype mound model; boxes are model output, checked by a person before publishing, not validated.",
       "camera": "Cart ground camera",
-      "shot": "CV backlog. Set labels to hand or model-reviewed to match how this clip's boxes were made."
+      "sources": {
+        "mp4": "/assets/media/gophers-age-01/gophers-age-01-1080.mp4",
+        "mp4_720": "/assets/media/gophers-age-01/gophers-age-01-720.mp4",
+        "poster": "/assets/media/gophers-age-01/gophers-age-01-poster.webp"
+      },
+      "fps": 30,
+      "duration": 10.0,
+      "site": "Okanagan vineyard",
+      "date": "2026-09"
     },
     {
       "id": "stakes-angle-01",
-      "status": "pending",
-      "public": false,
+      "status": "ready",
+      "public": true,
       "category": "stakes",
-      "labels": "hand",
-      "title": "Irrigation stakes, labelled by lean",
-      "caption": "Stakes labelled by how far they lean.",
-      "camera": "Cart ground camera",
-      "shot": "CV backlog. Set labels to hand or model-reviewed to match how this clip's boxes were made."
+      "labels": "model-reviewed",
+      "title": "Irrigation stakes: prototype model",
+      "caption": "Placeholder from an early prototype stake model; boxes are model output, checked by a person before publishing, not validated.",
+      "camera": "Phone",
+      "sources": {
+        "mp4": "/assets/media/stakes-angle-01/stakes-angle-01-1080.mp4",
+        "mp4_720": "/assets/media/stakes-angle-01/stakes-angle-01-720.mp4",
+        "poster": "/assets/media/stakes-angle-01/stakes-angle-01-poster.webp"
+      },
+      "fps": 30,
+      "duration": 5.0,
+      "site": "Okanagan orchard",
+      "date": "2026-10"
     },
     {
       "id": "canopy-dripline-01",
