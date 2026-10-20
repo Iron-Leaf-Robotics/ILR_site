@@ -14,9 +14,9 @@
       "status": "ready",
       "public": true,
       "category": "cart",
-      "labels": "none",
+      "labels": "model-reviewed",
       "title": "The cart on a row pass",
-      "caption": "A camera on the ground mid-row as the cart is pushed over it.",
+      "caption": "One field day: apple and cherry rows from the cart-mounted phone, a cart camera frame with prototype model boxes, and the block from above.",
       "site": "Okanagan orchard",
       "date": "2026-10",
       "camera": "Phone",
@@ -27,7 +27,7 @@
         "poster": "/assets/media/field-hero/field-hero-poster.webp"
       },
       "fps": 30,
-      "duration": 7.2
+      "duration": 8.47
     },
     {
       "id": "field-tracking",
@@ -36,7 +36,7 @@
       "category": "cart",
       "labels": "none",
       "title": "Alongside the cart",
-      "caption": "Low alongside the cart as it is pushed down an orchard row.",
+      "caption": "From the cart-mounted phone, walking a young apple row.",
       "date": "2026-10",
       "camera": "Phone",
       "sources": {
