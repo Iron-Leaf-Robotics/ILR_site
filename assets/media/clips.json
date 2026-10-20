@@ -145,8 +145,8 @@
       "public": true,
       "category": "gophers",
       "labels": "model-reviewed",
-      "title": "Gopher mounds: prototype model",
-      "caption": "Placeholder from an earlier prototype mound model; boxes are model output, checked by a person before publishing, not validated.",
+      "title": "Gopher mounds: new and week-old",
+      "caption": "Early mound detector (prototype, not validated) on a cart ground camera: boxes mark new and week-old mounds, with the model's confidence.",
       "camera": "Cart ground camera",
       "sources": {
         "mp4": "/assets/media/gophers-age-01/gophers-age-01-1080.mp4",
@@ -155,8 +155,8 @@
       },
       "fps": 30,
       "duration": 10.0,
-      "site": "Okanagan vineyard",
-      "date": "2026-09"
+      "site": "Okanagan orchard",
+      "date": "2026-10"
     },
     {
       "id": "stakes-angle-01",
