@@ -16,6 +16,7 @@ Then updates the clip's entry in clips.json (creating it if it's new): status=re
 fps, duration. It never sets "public": that only flips to true after the clip passes preflight.
 
 --loop-fade F   crossfades the last F seconds into the first F, so the loop has no visible jump.
+                Only for clips up to ~12 s; longer clips get cut at 12 s (see build_filter).
 --grade         a light, consistent grade (slightly lower saturation, a touch more contrast)
                 so phone, cart and screen footage sit together. Off by default; never on CV clips.
 --x-offset P    portrait crop centre as a fraction of width (0..1, default 0.5) if the cart isn't centred.
@@ -55,10 +56,12 @@ def build_filter(base, dur, fade, extra):
     chain = ','.join([f for f in extra if f])
     pre = f'[0:v]{chain},' if chain else '[0:v]'
     if fade and fade > 0:
+        # KNOWN ISSUE (ffmpeg 8.1, 2026-10-20): with any second branch (split, a second input or a separate head
+        # file), clips longer than ~12 s come out cut at 12 s. Use --loop-fade 0 for long clips (e.g. the hero).
         body = dur - fade
-        return (f'{pre}split[a][b];'
-                f'[a]trim=start={fade}:end={dur},setpts=PTS-STARTPTS[main];'
-                f'[b]trim=start=0:end={fade},setpts=PTS-STARTPTS[head];'
+        head = f'[1:v]{chain},' if chain else '[1:v]'
+        return (f'{pre}trim=start={fade}:end={dur},setpts=PTS-STARTPTS[main];'
+                f'{head}trim=start=0:end={fade},setpts=PTS-STARTPTS[head];'
                 f'[main][head]xfade=transition=fade:duration={fade}:offset={body - fade}{base}[v]')
     return f'{pre}null{base}[v]'
 
@@ -107,9 +110,12 @@ def main():
     out_dir = os.path.join(REPO, 'assets', 'media', a.id)
     os.makedirs(out_dir, exist_ok=True)
     rel = lambda name: f'/assets/media/{a.id}/{name}'
-    common_in = ['ffmpeg', '-y', '-v', 'error', '-ss', str(a.start), '-t', str(dur), '-i', a.src]
+    # trim bounds the loop-fade path; the output -t (in x264 below) bounds the plain path.
+    common_in = ['ffmpeg', '-y', '-v', 'error', '-ss', str(a.start), '-i', a.src]
+    if fade:  # build_filter reads the loop-fade head from a second copy of the input (see KNOWN ISSUE there)
+        common_in += ['-ss', str(a.start), '-i', a.src]
     pre = [f'fps={a.fps}', DENOISE, GRADE if a.grade else '']
-    x264 = ['-c:v', 'libx264', '-preset', 'slow', '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', '-an']
+    x264 = ['-t', f'{dur - fade:.3f}', '-c:v', 'libx264', '-preset', 'slow', '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', '-an']
 
     print(f'{a.id}: {w}x{h} @ {src_fps:.2f} fps, cutting {dur:.1f}s from {a.start}s' + (f', loop fade {fade}s' if fade else ''))
     landscape_scale = lambda maxw: f',scale=w=min({maxw}\\,iw):h=-2:flags=lanczos'
