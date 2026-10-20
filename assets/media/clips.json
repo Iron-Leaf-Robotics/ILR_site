@@ -11,78 +11,120 @@
   "clips": [
     {
       "id": "field-hero",
-      "status": "pending",
-      "public": false,
+      "status": "ready",
+      "public": true,
       "category": "cart",
       "labels": "none",
       "title": "The cart on a row pass",
-      "caption": "Low angle at the row end as the cart is pushed down the row.",
-      "site": "",
+      "caption": "A camera on the ground mid-row as the cart is pushed over it.",
+      "site": "Okanagan orchard",
       "date": "2026-10",
       "camera": "Phone",
-      "shot": "Shot list #3. Homepage hero loop, 8-12 s, cart centred for a portrait crop."
+      "sources": {
+        "mp4": "/assets/media/field-hero/field-hero-1080.mp4",
+        "mp4_720": "/assets/media/field-hero/field-hero-720.mp4",
+        "mp4_portrait": "/assets/media/field-hero/field-hero-portrait.mp4",
+        "poster": "/assets/media/field-hero/field-hero-poster.webp"
+      },
+      "fps": 30,
+      "duration": 7.2
     },
     {
       "id": "field-tracking",
-      "status": "pending",
-      "public": false,
+      "status": "ready",
+      "public": true,
       "category": "cart",
       "labels": "none",
       "title": "Alongside the cart",
-      "caption": "Walking the next row over, at the height of the cart's cameras.",
+      "caption": "Low alongside the cart as it is pushed down an orchard row.",
       "date": "2026-10",
       "camera": "Phone",
-      "shot": "Shot list #4. Platform section opener."
+      "sources": {
+        "mp4": "/assets/media/field-tracking/field-tracking-1080.mp4",
+        "mp4_720": "/assets/media/field-tracking/field-tracking-720.mp4",
+        "poster": "/assets/media/field-tracking/field-tracking-poster.webp"
+      },
+      "fps": 30,
+      "duration": 7.4,
+      "site": "Okanagan orchard"
     },
     {
       "id": "field-shoulder",
-      "status": "pending",
-      "public": false,
+      "status": "ready",
+      "public": true,
       "category": "cart",
       "labels": "none",
       "title": "Walking the row",
-      "caption": "Over the operator's shoulder, pushing the cart down the row.",
+      "caption": "Behind the cart, pushing it down the row.",
       "date": "2026-10",
       "camera": "Phone",
-      "shot": "Shot list #6. 'How a pass works', step 1."
+      "sources": {
+        "mp4": "/assets/media/field-shoulder/field-shoulder-1080.mp4",
+        "mp4_720": "/assets/media/field-shoulder/field-shoulder-720.mp4",
+        "poster": "/assets/media/field-shoulder/field-shoulder-poster.webp"
+      },
+      "fps": 30,
+      "duration": 7.37,
+      "site": "Okanagan orchard"
     },
     {
       "id": "field-crossbar",
-      "status": "pending",
-      "public": false,
+      "status": "ready",
+      "public": true,
       "category": "cart",
       "labels": "none",
       "title": "The camera crossbar",
-      "caption": "The cart's front crossbar and cameras.",
+      "caption": "The cart's camera crossbar, GPS antenna and phone mount.",
       "date": "2026-10",
       "camera": "Phone",
-      "shot": "Shot list #1. 'How a pass works', step 2."
+      "sources": {
+        "mp4": "/assets/media/field-crossbar/field-crossbar-1080.mp4",
+        "mp4_720": "/assets/media/field-crossbar/field-crossbar-720.mp4",
+        "poster": "/assets/media/field-crossbar/field-crossbar-poster.webp"
+      },
+      "fps": 30,
+      "duration": 5.47,
+      "site": "Okanagan orchard"
     },
     {
       "id": "field-ground",
-      "status": "pending",
-      "public": false,
+      "status": "ready",
+      "public": true,
       "category": "cart",
       "labels": "none",
       "feature": false,
       "title": "At ground level",
-      "caption": "The cart's wheels and crossbar rolling past.",
+      "caption": "The camera crossbar passing over a ground-level camera.",
       "date": "2026-10",
       "camera": "Phone",
-      "shot": "Shot list #5. Field log."
+      "sources": {
+        "mp4": "/assets/media/field-ground/field-ground-1080.mp4",
+        "mp4_720": "/assets/media/field-ground/field-ground-720.mp4",
+        "poster": "/assets/media/field-ground/field-ground-poster.webp"
+      },
+      "fps": 30,
+      "duration": 6.5,
+      "site": "Okanagan orchard"
     },
     {
       "id": "field-silhouette",
-      "status": "pending",
-      "public": false,
+      "status": "ready",
+      "public": true,
       "category": "cart",
       "labels": "none",
       "feature": false,
       "title": "After sunset",
-      "caption": "The cart at the end of a run.",
+      "caption": "The cart rolling away down the row.",
       "date": "2026-10",
       "camera": "Phone",
-      "shot": "Shot list #10. Contact section background."
+      "sources": {
+        "mp4": "/assets/media/field-silhouette/field-silhouette-1080.mp4",
+        "mp4_720": "/assets/media/field-silhouette/field-silhouette-720.mp4",
+        "poster": "/assets/media/field-silhouette/field-silhouette-poster.webp"
+      },
+      "fps": 30,
+      "duration": 5.5,
+      "site": "Okanagan orchard"
     },
     {
       "id": "field-operator-screen",
@@ -130,7 +172,6 @@
       "camera": "Cart camera",
       "shot": "CV backlog. Set labels to hand or model-reviewed to match how this clip's boxes were made."
     },
-
     {
       "id": "report-mark-05",
       "status": "ready",
@@ -145,8 +186,11 @@
       "crop": "Wine grapes",
       "camera": "Cart ground camera",
       "alt": "A cart camera frame with a boxed gopher mound",
-      "sources": { "image": "/sample-report/photo-5.webp" },
-      "width": 840, "height": 630
+      "sources": {
+        "image": "/sample-report/photo-5.webp"
+      },
+      "width": 840,
+      "height": 630
     },
     {
       "id": "report-mark-10",
@@ -162,8 +206,11 @@
       "crop": "Wine grapes",
       "camera": "Cart ground camera",
       "alt": "A cart camera frame with a boxed gopher mound",
-      "sources": { "image": "/sample-report/photo-10.webp" },
-      "width": 840, "height": 630
+      "sources": {
+        "image": "/sample-report/photo-10.webp"
+      },
+      "width": 840,
+      "height": 630
     },
     {
       "id": "report-mark-13",
@@ -179,8 +226,11 @@
       "crop": "Wine grapes",
       "camera": "Cart ground camera",
       "alt": "A cart camera frame with a boxed gopher mound",
-      "sources": { "image": "/sample-report/photo-13.webp" },
-      "width": 840, "height": 630
+      "sources": {
+        "image": "/sample-report/photo-13.webp"
+      },
+      "width": 840,
+      "height": 630
     },
     {
       "id": "report-mark-02",
@@ -197,8 +247,11 @@
       "crop": "Wine grapes",
       "camera": "Cart ground camera",
       "alt": "A cart camera frame with a boxed gopher mound",
-      "sources": { "image": "/sample-report/photo-2.webp" },
-      "width": 840, "height": 630
+      "sources": {
+        "image": "/sample-report/photo-2.webp"
+      },
+      "width": 840,
+      "height": 630
     },
     {
       "id": "photo-vineyard",
@@ -212,8 +265,11 @@
       "site": "Okanagan vineyard",
       "camera": "Phone",
       "alt": "The sensor cart between vine rows, with Kelowna and the hills behind",
-      "sources": { "image": "/assets/cart-vineyard.webp" },
-      "width": 600, "height": 800
+      "sources": {
+        "image": "/assets/cart-vineyard.webp"
+      },
+      "width": 600,
+      "height": 800
     },
     {
       "id": "photo-orchard-row",
@@ -227,8 +283,11 @@
       "site": "Okanagan orchard",
       "camera": "Phone",
       "alt": "The sensor cart in an orchard row at dusk",
-      "sources": { "image": "/assets/cart-orchard-row.webp" },
-      "width": 600, "height": 800
+      "sources": {
+        "image": "/assets/cart-orchard-row.webp"
+      },
+      "width": 600,
+      "height": 800
     },
     {
       "id": "photo-crossbar",
@@ -242,8 +301,11 @@
       "site": "Okanagan orchard",
       "camera": "Phone",
       "alt": "The sensor cart's front crossbar with four cameras and a phone mount, in an apple orchard",
-      "sources": { "image": "/assets/cart-crossbar.webp" },
-      "width": 600, "height": 800
+      "sources": {
+        "image": "/assets/cart-crossbar.webp"
+      },
+      "width": 600,
+      "height": 800
     },
     {
       "id": "photo-orchard-side",
@@ -257,8 +319,11 @@
       "site": "Okanagan orchard",
       "camera": "Phone",
       "alt": "The sensor cart between rows of apple trees, seen from the side",
-      "sources": { "image": "/assets/cart-orchard-side.webp" },
-      "width": 600, "height": 800
+      "sources": {
+        "image": "/assets/cart-orchard-side.webp"
+      },
+      "width": 600,
+      "height": 800
     }
   ]
 }
