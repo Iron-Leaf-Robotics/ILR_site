@@ -10,6 +10,66 @@
   ],
   "clips": [
     {
+      "id": "pass-capture",
+      "public": true,
+      "status": "ready",
+      "sources": {
+        "mp4": "/assets/media/pass-capture/pass-capture-1080.mp4",
+        "mp4_720": "/assets/media/pass-capture/pass-capture-720.mp4",
+        "poster": "/assets/media/pass-capture/pass-capture-poster.webp"
+      },
+      "fps": 30,
+      "duration": 13.27,
+      "category": "gophers",
+      "labels": "none",
+      "title": "Capture",
+      "caption": "The cart ground camera on an orchard row, raw.",
+      "feature": false,
+      "in_log": false,
+      "site": "Okanagan orchard",
+      "date": "2026-10"
+    },
+    {
+      "id": "pass-walk",
+      "public": true,
+      "status": "ready",
+      "sources": {
+        "mp4": "/assets/media/pass-walk/pass-walk-1080.mp4",
+        "mp4_720": "/assets/media/pass-walk/pass-walk-720.mp4",
+        "poster": "/assets/media/pass-walk/pass-walk-poster.webp"
+      },
+      "fps": 30,
+      "duration": 7.97,
+      "category": "cart",
+      "labels": "none",
+      "title": "Walk the row",
+      "caption": "Operator marks pinned to the GPS track as the cart moves down the row.",
+      "feature": false,
+      "in_log": true,
+      "site": "Okanagan orchard",
+      "date": "2026-10"
+    },
+    {
+      "id": "pass-review",
+      "public": true,
+      "status": "ready",
+      "sources": {
+        "mp4": "/assets/media/pass-review/pass-review-1080.mp4",
+        "mp4_720": "/assets/media/pass-review/pass-review-720.mp4",
+        "poster": "/assets/media/pass-review/pass-review-poster.webp"
+      },
+      "fps": 30,
+      "duration": 13.27,
+      "category": "gophers",
+      "labels": "model-reviewed",
+      "title": "Review",
+      "caption": "The same frames with an early mound detector's boxes (prototype, not validated): new and week-old mounds.",
+      "feature": false,
+      "in_log": true,
+      "site": "Okanagan orchard",
+      "date": "2026-10"
+    },
+    {
       "id": "field-hero",
       "status": "ready",
       "public": true,
@@ -154,7 +214,7 @@
         "poster": "/assets/media/gophers-age-01/gophers-age-01-poster.webp"
       },
       "fps": 30,
-      "duration": 10.0,
+      "duration": 13.27,
       "site": "Okanagan orchard",
       "date": "2026-10"
     },
@@ -313,15 +373,15 @@
       "labels": "none",
       "feature": false,
       "title": "Front sensor crossbar",
-      "caption": "The sensor cart's front crossbar with four cameras and a phone mount, in an apple orchard.",
+      "caption": "The cart's camera crossbar with the GPS antenna and phone mount, October 2026.",
       "site": "Okanagan orchard",
       "camera": "Phone",
-      "alt": "The sensor cart's front crossbar with four cameras and a phone mount, in an apple orchard",
+      "alt": "The cart's camera crossbar with four cameras, the GPS antenna and the phone mount",
       "sources": {
-        "image": "/assets/cart-crossbar.webp"
+        "image": "/assets/cart-crossbar-2026-10.webp"
       },
-      "width": 600,
-      "height": 800
+      "width": 1400,
+      "height": 1860
     },
     {
       "id": "photo-orchard-side",
