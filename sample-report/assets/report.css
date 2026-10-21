@@ -464,3 +464,6 @@ dialog .clip-cameras { grid-template-columns:1fr 1fr; }
 .report-rule-241 {width:19.2%}
 .report-rule-242 {background:#D7262E}
 .report-rule-243 {background:#D7262E}
+a.wordmark { color:inherit; text-decoration:none; }
+.app-shell .actions .btn { min-height:44px; display:inline-flex; align-items:center; }
+footer a { color:var(--mint); }
