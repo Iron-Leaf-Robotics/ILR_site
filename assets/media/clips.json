@@ -63,7 +63,7 @@
       "category": "gophers",
       "labels": "model-reviewed",
       "title": "Review",
-      "caption": "The same frames with an early mound detector's boxes (prototype, not validated): new and week-old mounds.",
+      "caption": "The same frames with an early mound detector's boxes (model output; prototype, not validated): new and week-old mounds. Demo-only model, trained on footage that includes this pass.",
       "feature": false,
       "in_log": true,
       "site": "Okanagan orchard",
@@ -76,7 +76,7 @@
       "category": "cart",
       "labels": "model-reviewed",
       "title": "The cart on a row pass",
-      "caption": "One field day: the cart and its camera bar, apple and cherry rows, a cart camera frame with a prototype model box, and the block map with operator marks.",
+      "caption": "One field day: the cart and its camera bar, apple and cherry rows, a cart camera frame with a model box (model output; demo-only prototype, not validated), and the block map with operator marks.",
       "site": "Okanagan orchard",
       "date": "2026-10",
       "camera": "Phone",
@@ -206,7 +206,7 @@
       "category": "gophers",
       "labels": "model-reviewed",
       "title": "Gopher mounds: new and week-old",
-      "caption": "Early mound detector (prototype, not validated) on a cart ground camera: boxes mark new and week-old mounds, with the model's confidence.",
+      "caption": "Early mound detector (model output; prototype, not validated) on a cart ground camera: boxes mark new and week-old mounds, with the model's confidence. Demo-only model, trained on footage that includes this pass.",
       "camera": "Cart ground camera",
       "sources": {
         "mp4": "/assets/media/gophers-age-01/gophers-age-01-1080.mp4",
@@ -235,7 +235,8 @@
       "fps": 30,
       "duration": 18.0,
       "site": "Okanagan orchard",
-      "date": "2026-10"
+      "date": "2026-10",
+      "labels_note": "Reviewed by a person; boxes may have begun as model proposals"
     },
     {
       "id": "canopy-dripline-01",
@@ -251,7 +252,7 @@
     {
       "id": "report-mark-05",
       "status": "ready",
-      "public": true,
+      "public": false,
       "category": "gophers",
       "labels": "hand",
       "labels_note": "Confirmed by reviewer",
@@ -271,7 +272,7 @@
     {
       "id": "report-mark-10",
       "status": "ready",
-      "public": true,
+      "public": false,
       "category": "gophers",
       "labels": "hand",
       "labels_note": "Confirmed by reviewer",
@@ -291,7 +292,7 @@
     {
       "id": "report-mark-13",
       "status": "ready",
-      "public": true,
+      "public": false,
       "category": "gophers",
       "labels": "hand",
       "labels_note": "Confirmed by reviewer",
@@ -311,7 +312,7 @@
     {
       "id": "report-mark-02",
       "status": "ready",
-      "public": true,
+      "public": false,
       "category": "gophers",
       "labels": "hand",
       "labels_note": "Confirmed by reviewer",
@@ -332,7 +333,7 @@
     {
       "id": "photo-vineyard",
       "status": "ready",
-      "public": true,
+      "public": false,
       "category": "cart",
       "labels": "none",
       "feature": false,
