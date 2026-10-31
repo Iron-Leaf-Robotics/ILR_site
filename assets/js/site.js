@@ -179,6 +179,14 @@
       steps.forEach((li, i) => li.classList.toggle('on', i <= step));
       $('[data-pass-steps]', pass).style.setProperty('--p', p.toFixed(3));
       if (count) count.textContent = `0${step + 1} / 0${N}`;
+      $$('.layer[data-step]', pass).forEach((layer) => {
+        const active = Number(layer.dataset.step) === step;
+        layer.inert = !active;
+        layer.setAttribute('aria-hidden', String(!active));
+        $$('video', layer).forEach((v) => {
+          if (!active) v.pause(); else if (v._autoplay) v._autoplay();
+        });
+      });
       if (!svg) return;
       const x = 20 + 560 * clamp((p - 0.04) / 0.62, 0, 1);
       cart.setAttribute('x', x - 6); trail.setAttribute('x2', x);
@@ -265,25 +273,62 @@
 
   const vidIO = new IntersectionObserver((entries) => entries.forEach((e) => {
     const v = e.target;
+    v._inView = e.isIntersecting;
     if (e.isIntersecting) v._autoplay && v._autoplay(); else v.pause();
   }), { threshold: 0.2 });
 
   const makeVideo = (c, { eager = false, compact = false } = {}) => {
-    const v = el('video', { muted: true, loop: true, playsinline: true, preload: eager ? 'auto' : 'none', poster: c.sources.poster, 'aria-label': c.alt || c.title || '' });
-    v.muted = true; v.playsInline = true;
+    // Grid cards stay as posters; opening one provides native lightbox controls.
+    const canAuto = !compact && !reduce.matches && !saveData;
+    const v = el('video', { muted: true, loop: true, playsinline: true, preload: eager && canAuto ? 'auto' : 'none', poster: c.sources.poster, 'aria-label': c.alt || c.title || '' });
+    v.muted = true; v.playsInline = true; v._inView = false;
     const src = pickSrc(c, compact);
-    const load = () => { if (!v.src) { v.src = src; } };
-    if (eager) load();
-    const canAuto = !reduce.matches && !saveData;
-    v._autoplay = () => {
-      if (!canAuto) return;
-      const panel = v.closest('[role="tabpanel"]');
-      if (panel && panel.hidden) return;
-      load(); const p = v.play(); if (p) p.catch(() => {});
+    const load = () => { if (!v.src) v.src = src; };
+    if (eager && canAuto) load();
+    let userPaused = false, autoplayBlocked = false, playPending = false;
+    const active = () => {
+      if (v.closest('[hidden]')) return false;
+      const layer = v.closest('.layer[data-step]');
+      const owner = layer && layer.closest('[data-pass]');
+      return !owner || layer.dataset.step === owner.dataset.step;
     };
-    if (!canAuto) {
-      const b = el('button', { class: 'play-btn', type: 'button', 'aria-label': 'Play clip' }, '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>');
-      b.addEventListener('click', () => { load(); v.play(); b.remove(); });
+    const b = compact ? null : el('button', { class: 'video-toggle', type: 'button' });
+    const updateControl = () => {
+      if (!b) return;
+      const action = v.paused ? 'Play' : 'Pause';
+      b.textContent = `${action} video`;
+      b.setAttribute('aria-label', `${action} video: ${c.title || 'field footage'}`);
+    };
+    const requestPlay = (manual = false) => {
+      if (!active() || playPending || !v.paused) return;
+      load(); playPending = true;
+      try {
+        const pending = v.play();
+        if (pending && pending.then) {
+          pending.then(() => {
+            playPending = false;
+            if (!active() || userPaused || (!manual && !v._inView)) v.pause();
+            updateControl();
+          }).catch((error) => {
+            playPending = false;
+            if (error.name !== 'AbortError') autoplayBlocked = true;
+            updateControl();
+          });
+        } else { playPending = false; updateControl(); }
+      } catch (_) { playPending = false; autoplayBlocked = true; updateControl(); }
+    };
+    v._autoplay = () => {
+      if (!canAuto || !v._inView || userPaused || autoplayBlocked || !active()) return;
+      requestPlay();
+    };
+    if (b) {
+      b.addEventListener('click', () => {
+        if (v.paused) { userPaused = false; autoplayBlocked = false; requestPlay(true); }
+        else { userPaused = true; v.pause(); }
+      });
+      v.addEventListener('play', updateControl);
+      v.addEventListener('pause', updateControl);
+      updateControl();
       v._playBtn = b;
     }
     vidIO.observe(v);
@@ -304,7 +349,10 @@
       node.style.cssText = 'width:100%;height:100%;object-fit:cover';
     }
     if (old) old.replaceWith(node); else box.prepend(node);
-    if (node._playBtn) box.appendChild(node._playBtn);
+    if (node._playBtn) {
+      const controlHost = box.closest('.hero, .opener, .cta-band, .layer[data-step]') || box;
+      (controlHost || box).appendChild(node._playBtn);
+    }
     const why = stagingReason(c);
     if (why) box.appendChild(el('span', { class: `chip ${why.cls} staging-flag`, text: why.text }));
     return node;
@@ -338,7 +386,7 @@
     const media = $('.lb-media', lightbox);
     media.innerHTML = '';
     if (c.sources.mp4) {
-      const v = el('video', { controls: true, playsinline: true, muted: true, loop: true, poster: c.sources.poster, src: c.sources.mp4 });
+      const v = el('video', { controls: true, playsinline: true, muted: true, loop: true, poster: c.sources.poster, src: pickSrc(c, false) });
       media.appendChild(v);
       if (!reduce.matches) v.play().catch(() => {});
     } else {

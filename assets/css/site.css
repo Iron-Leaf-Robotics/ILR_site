@@ -216,6 +216,22 @@ section.band { background: var(--bg-deep); border-top: 1px solid var(--line); bo
 }
 .play-btn svg { width: 1.2rem; height: 1.2rem; margin-left: 3px; }
 
+
+/* Video controls remain available when browser autoplay is declined. */
+.video-toggle {
+  position: absolute; z-index: 6; right: .8rem; bottom: .8rem; min-height: 2.75rem;
+  padding: .55rem .85rem; border: 1px solid rgba(241, 246, 243, .5); border-radius: 999px;
+  background: rgba(7, 16, 12, .8); color: var(--text); font: 500 .75rem var(--mono); cursor: pointer;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.video-toggle:hover { border-color: var(--mint); }
+.video-toggle:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; }
+.hero > .video-toggle { top: calc(var(--nav-h) + 1rem); bottom: auto; left: 1.25rem; right: auto; }
+.sees-media > .video-toggle, .pass-stage .layer > .video-toggle { top: .8rem; bottom: auto; }
+.opener > .video-toggle, .cta-band > .video-toggle { top: 1rem; bottom: auto; right: 1rem; }
+.pass .layer[aria-hidden="true"] { pointer-events: none; }
+.pass .layer[aria-hidden="true"] .video-toggle { visibility: hidden; }
+
 /* ---------- Reveal on scroll ---------- */
 .js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--ease-out), transform .9s var(--ease-out); transition-delay: calc(var(--i, 0) * 90ms); }
 .js .reveal.in { opacity: 1; transform: none; }

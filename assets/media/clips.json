@@ -10,42 +10,62 @@
   ],
   "clips": [
     {
-      "id": "oak-vineyard-row-2",
-      "public": false,
+      "id": "field-hero",
       "status": "ready",
-      "sources": {
-        "mp4": "/assets/media/oak-vineyard-row-2/oak-vineyard-row-2-1080.mp4",
-        "mp4_720": "/assets/media/oak-vineyard-row-2/oak-vineyard-row-2-720.mp4",
-        "poster": "/assets/media/oak-vineyard-row-2/oak-vineyard-row-2-poster.webp"
-      },
-      "fps": 24,
-      "duration": 8.0,
+      "public": true,
       "category": "cart",
       "labels": "none",
-      "title": "From the cart: vine rows in fall",
-      "caption": "The cart's OAK-D wide camera between vine rows, raw.",
-      "site": "Okanagan vineyard",
+      "title": "The cart, out in the rows",
+      "caption": "October field footage from Okanagan rows. Camera footage; no model detections.",
+      "site": "Okanagan",
       "date": "2026-10",
-      "camera": "OAK-D wide"
+      "camera": null,
+      "sources": {
+        "mp4": "/assets/media/field-hero/field-hero-1080.mp4",
+        "mp4_720": "/assets/media/field-hero/field-hero-720.mp4",
+        "poster": "/assets/media/field-hero/field-hero-poster.webp",
+        "mp4_portrait": "/assets/media/field-hero/field-hero-portrait.mp4"
+      },
+      "fps": 24,
+      "duration": 12.0
     },
     {
-      "id": "oak-vineyard-row",
-      "public": false,
+      "id": "field-tracking",
       "status": "ready",
-      "sources": {
-        "mp4": "/assets/media/oak-vineyard-row/oak-vineyard-row-1080.mp4",
-        "mp4_720": "/assets/media/oak-vineyard-row/oak-vineyard-row-720.mp4",
-        "poster": "/assets/media/oak-vineyard-row/oak-vineyard-row-poster.webp"
-      },
-      "fps": 24,
-      "duration": 8.0,
+      "public": true,
       "category": "cart",
       "labels": "none",
-      "title": "From the cart: a vineyard row",
-      "caption": "The cart's OAK-D wide camera down a vineyard row, raw.",
-      "site": "Okanagan vineyard",
+      "title": "Along the orchard row",
+      "caption": "An operator pushes the cart through an orchard row in October. Camera footage; no model overlay.",
       "date": "2026-10",
-      "camera": "OAK-D wide"
+      "camera": "Pixel phone",
+      "sources": {
+        "mp4": "/assets/media/field-tracking/field-tracking-1080.mp4",
+        "mp4_720": "/assets/media/field-tracking/field-tracking-720.mp4",
+        "poster": "/assets/media/field-tracking/field-tracking-poster.webp"
+      },
+      "fps": 24,
+      "duration": 7.96,
+      "site": "Okanagan orchard"
+    },
+    {
+      "id": "field-crossbar",
+      "status": "ready",
+      "public": true,
+      "category": "cart",
+      "labels": "none",
+      "title": "A closer look at the cart",
+      "caption": "The camera crossbar and GPS antenna on the cart during an October field visit. Camera footage; no model overlay.",
+      "date": "2026-10",
+      "camera": "Pixel phone",
+      "sources": {
+        "mp4": "/assets/media/field-crossbar/field-crossbar-1080.mp4",
+        "mp4_720": "/assets/media/field-crossbar/field-crossbar-720.mp4",
+        "poster": "/assets/media/field-crossbar/field-crossbar-poster.webp"
+      },
+      "fps": 24,
+      "duration": 6.46,
+      "site": "Okanagan orchard"
     },
     {
       "id": "oak-depth",
@@ -63,6 +83,80 @@
       "title": "Colour and depth from one camera",
       "caption": "The OAK-D's colour view beside its stereo depth (warmer = closer, dark = no reading). Raw sensor output, no model.",
       "site": "Okanagan orchard",
+      "date": "2026-10",
+      "camera": "OAK-D wide"
+    },
+    {
+      "id": "oak-vineyard-row",
+      "public": true,
+      "status": "ready",
+      "sources": {
+        "mp4": "/assets/media/oak-vineyard-row/oak-vineyard-row-1080.mp4",
+        "mp4_720": "/assets/media/oak-vineyard-row/oak-vineyard-row-720.mp4",
+        "poster": "/assets/media/oak-vineyard-row/oak-vineyard-row-poster.webp"
+      },
+      "fps": 24,
+      "duration": 8.0,
+      "category": "cart",
+      "labels": "none",
+      "title": "From the cart: a vineyard row",
+      "caption": "The cart's OAK-D wide camera down a vineyard row, raw.",
+      "site": "Okanagan vineyard",
+      "date": "2026-10",
+      "camera": "OAK-D wide"
+    },
+    {
+      "id": "mounds-cluster",
+      "public": true,
+      "status": "ready",
+      "sources": {
+        "mp4": "/assets/media/mounds-cluster/mounds-cluster-1080.mp4",
+        "mp4_720": "/assets/media/mounds-cluster/mounds-cluster-720.mp4",
+        "poster": "/assets/media/mounds-cluster/mounds-cluster-poster.webp"
+      },
+      "fps": 15,
+      "duration": 10.0,
+      "category": "gophers",
+      "labels": "model-reviewed",
+      "title": "Gopher mounds: a cluster",
+      "caption": "Early mound detector (model output; prototype, not validated) on a cart ground camera: boxes mark mounds, with the model's age guess and confidence. Demo-only model, trained on footage that includes this pass.",
+      "site": "Okanagan orchard",
+      "date": "2026-10"
+    },
+    {
+      "id": "stakes-model-01",
+      "public": true,
+      "status": "ready",
+      "sources": {
+        "mp4": "/assets/media/stakes-model-01/stakes-model-01-1080.mp4",
+        "mp4_720": "/assets/media/stakes-model-01/stakes-model-01-720.mp4",
+        "poster": "/assets/media/stakes-model-01/stakes-model-01-poster.webp"
+      },
+      "fps": 15,
+      "duration": 10.0,
+      "category": "stakes",
+      "labels": "model-reviewed",
+      "title": "Irrigation stakes: leaning and upright",
+      "caption": "Early stake detector (model output; prototype, not validated) on phone video: boxes mark leaning and upright sprinkler stakes. Demo-only model, trained on footage that includes this pass.",
+      "site": "Okanagan orchard",
+      "date": "2026-10"
+    },
+    {
+      "id": "oak-vineyard-row-2",
+      "public": true,
+      "status": "ready",
+      "sources": {
+        "mp4": "/assets/media/oak-vineyard-row-2/oak-vineyard-row-2-1080.mp4",
+        "mp4_720": "/assets/media/oak-vineyard-row-2/oak-vineyard-row-2-720.mp4",
+        "poster": "/assets/media/oak-vineyard-row-2/oak-vineyard-row-2-poster.webp"
+      },
+      "fps": 24,
+      "duration": 8.0,
+      "category": "cart",
+      "labels": "none",
+      "title": "From the cart: vine rows in fall",
+      "caption": "The cart's OAK-D wide camera between vine rows, raw.",
+      "site": "Okanagan vineyard",
       "date": "2026-10",
       "camera": "OAK-D wide"
     },
@@ -115,16 +209,18 @@
         "mp4_720": "/assets/media/pass-walk/pass-walk-720.mp4",
         "poster": "/assets/media/pass-walk/pass-walk-poster.webp"
       },
-      "fps": 30,
-      "duration": 7.97,
+      "fps": 24,
+      "duration": 10.0,
       "category": "cart",
       "labels": "none",
       "title": "Walk the row",
-      "caption": "Operator marks pinned to the GPS track as the cart moves down the row.",
+      "caption": "Camera footage from an orchard pass, including an interval marked by the operator. No model overlay.",
       "feature": false,
       "in_log": true,
       "site": "Okanagan orchard",
-      "date": "2026-10"
+      "date": "2026-10",
+      "camera": "OAK-D wide",
+      "labels_note": "Operator-marked interval"
     },
     {
       "id": "pass-review",
@@ -140,50 +236,11 @@
       "category": "gophers",
       "labels": "model-reviewed",
       "title": "Review",
-      "caption": "Ground camera frames with an early mound detector's boxes (model output; prototype, not validated): new and week-old mounds. Demo-only model, trained on footage that includes this pass.",
+      "caption": "Ground camera frames with an early mound detector's boxes and age estimates (model output; prototype, not validated). Demo-only model, trained on footage that includes this pass.",
       "feature": false,
       "in_log": true,
       "site": "Okanagan orchard",
       "date": "2026-10"
-    },
-    {
-      "id": "field-hero",
-      "status": "ready",
-      "public": true,
-      "category": "cart",
-      "labels": "none",
-      "title": "The cart's own camera on a row pass",
-      "caption": "One demo: the cart's OAK-D wide camera down orchard rows, its stereo depth (warmer = closer), and the view from the cart-mounted phone in an apple row. Raw footage, no model.",
-      "site": "Okanagan orchard",
-      "date": "2026-10",
-      "camera": "OAK-D wide",
-      "sources": {
-        "mp4": "/assets/media/field-hero/field-hero-1080.mp4",
-        "mp4_720": "/assets/media/field-hero/field-hero-720.mp4",
-        "mp4_portrait": "/assets/media/field-hero/field-hero-portrait.mp4",
-        "poster": "/assets/media/field-hero/field-hero-poster.webp"
-      },
-      "fps": 24,
-      "duration": 24.0
-    },
-    {
-      "id": "field-tracking",
-      "status": "ready",
-      "public": true,
-      "category": "cart",
-      "labels": "none",
-      "title": "Alongside the cart",
-      "caption": "From the cart-mounted phone, walking a young apple row.",
-      "date": "2026-10",
-      "camera": "Phone",
-      "sources": {
-        "mp4": "/assets/media/field-tracking/field-tracking-1080.mp4",
-        "mp4_720": "/assets/media/field-tracking/field-tracking-720.mp4",
-        "poster": "/assets/media/field-tracking/field-tracking-poster.webp"
-      },
-      "fps": 30,
-      "duration": 7.4,
-      "site": "Okanagan orchard"
     },
     {
       "id": "field-shoulder",
@@ -192,35 +249,16 @@
       "category": "cart",
       "labels": "none",
       "title": "Walking the row",
-      "caption": "Behind the cart, pushing it down the row.",
+      "caption": "Following the operator and cart along an autumn orchard row. Camera footage; no model overlay.",
       "date": "2026-10",
-      "camera": "Phone",
+      "camera": "Pixel phone",
       "sources": {
         "mp4": "/assets/media/field-shoulder/field-shoulder-1080.mp4",
         "mp4_720": "/assets/media/field-shoulder/field-shoulder-720.mp4",
         "poster": "/assets/media/field-shoulder/field-shoulder-poster.webp"
       },
-      "fps": 30,
-      "duration": 7.37,
-      "site": "Okanagan orchard"
-    },
-    {
-      "id": "field-crossbar",
-      "status": "ready",
-      "public": true,
-      "category": "cart",
-      "labels": "none",
-      "title": "The camera crossbar",
-      "caption": "The cart's camera crossbar, GPS antenna and phone mount.",
-      "date": "2026-10",
-      "camera": "Phone",
-      "sources": {
-        "mp4": "/assets/media/field-crossbar/field-crossbar-1080.mp4",
-        "mp4_720": "/assets/media/field-crossbar/field-crossbar-720.mp4",
-        "poster": "/assets/media/field-crossbar/field-crossbar-poster.webp"
-      },
-      "fps": 30,
-      "duration": 5.47,
+      "fps": 24,
+      "duration": 8.0,
       "site": "Okanagan orchard"
     },
     {
@@ -230,18 +268,18 @@
       "category": "cart",
       "labels": "none",
       "feature": false,
-      "title": "At ground level",
-      "caption": "The camera crossbar passing over a ground-level camera.",
+      "title": "From the cart: between the vines",
+      "caption": "The cart's OAK-D wide camera between vineyard rows. Camera footage; no model overlay.",
       "date": "2026-10",
-      "camera": "Phone",
+      "camera": "OAK-D wide",
       "sources": {
         "mp4": "/assets/media/field-ground/field-ground-1080.mp4",
         "mp4_720": "/assets/media/field-ground/field-ground-720.mp4",
         "poster": "/assets/media/field-ground/field-ground-poster.webp"
       },
-      "fps": 30,
-      "duration": 6.5,
-      "site": "Okanagan orchard"
+      "fps": 24,
+      "duration": 8.0,
+      "site": "Okanagan vineyard"
     },
     {
       "id": "field-silhouette",
@@ -250,18 +288,18 @@
       "category": "cart",
       "labels": "none",
       "feature": false,
-      "title": "After sunset",
-      "caption": "The cart rolling away down the row.",
+      "title": "Two views from a vineyard visit",
+      "caption": "The cart between vineyard rows, followed by its camera view during the visit. Camera footage; no model detections.",
       "date": "2026-10",
-      "camera": "Phone",
+      "camera": "Pixel phone and OAK-D wide",
       "sources": {
         "mp4": "/assets/media/field-silhouette/field-silhouette-1080.mp4",
         "mp4_720": "/assets/media/field-silhouette/field-silhouette-720.mp4",
         "poster": "/assets/media/field-silhouette/field-silhouette-poster.webp"
       },
-      "fps": 30,
-      "duration": 5.5,
-      "site": "Okanagan orchard"
+      "fps": 24,
+      "duration": 8.0,
+      "site": "Okanagan vineyard"
     },
     {
       "id": "field-operator-screen",
@@ -276,24 +314,6 @@
       "camera": "Screen recording"
     },
     {
-      "id": "mounds-cluster",
-      "public": true,
-      "status": "ready",
-      "sources": {
-        "mp4": "/assets/media/mounds-cluster/mounds-cluster-1080.mp4",
-        "mp4_720": "/assets/media/mounds-cluster/mounds-cluster-720.mp4",
-        "poster": "/assets/media/mounds-cluster/mounds-cluster-poster.webp"
-      },
-      "fps": 15,
-      "duration": 10.0,
-      "category": "gophers",
-      "labels": "model-reviewed",
-      "title": "Gopher mounds: a cluster",
-      "caption": "Early mound detector (model output; prototype, not validated) on a cart ground camera: boxes mark mounds, with the model's age guess and confidence. Demo-only model, trained on footage that includes this pass.",
-      "site": "Okanagan orchard",
-      "date": "2026-10"
-    },
-    {
       "id": "mounds-week-a",
       "public": true,
       "status": "ready",
@@ -306,7 +326,7 @@
       "duration": 9.8,
       "category": "gophers",
       "labels": "model-reviewed",
-      "title": "Gopher mounds: week-old",
+      "title": "Gopher mounds: model age estimates",
       "caption": "Early mound detector (model output; prototype, not validated) on a cart ground camera: boxes mark mounds, with the model's age guess and confidence. Demo-only model, trained on footage that includes this pass.",
       "site": "Okanagan orchard",
       "date": "2026-10"
@@ -324,26 +344,8 @@
       "duration": 9.8,
       "category": "gophers",
       "labels": "model-reviewed",
-      "title": "Gopher mounds: week-old, second row",
+      "title": "Mound-model output: second row",
       "caption": "Early mound detector (model output; prototype, not validated) on a cart ground camera: boxes mark mounds, with the model's age guess and confidence. Demo-only model, trained on footage that includes this pass.",
-      "site": "Okanagan orchard",
-      "date": "2026-10"
-    },
-    {
-      "id": "stakes-model-01",
-      "public": true,
-      "status": "ready",
-      "sources": {
-        "mp4": "/assets/media/stakes-model-01/stakes-model-01-1080.mp4",
-        "mp4_720": "/assets/media/stakes-model-01/stakes-model-01-720.mp4",
-        "poster": "/assets/media/stakes-model-01/stakes-model-01-poster.webp"
-      },
-      "fps": 15,
-      "duration": 10.0,
-      "category": "stakes",
-      "labels": "model-reviewed",
-      "title": "Irrigation stakes: leaning and upright",
-      "caption": "Early stake detector (model output; prototype, not validated) on phone video: boxes mark leaning and upright sprinkler stakes. Demo-only model, trained on footage that includes this pass.",
       "site": "Okanagan orchard",
       "date": "2026-10"
     },
@@ -353,8 +355,8 @@
       "public": true,
       "category": "gophers",
       "labels": "model-reviewed",
-      "title": "Gopher mounds: new and week-old",
-      "caption": "Early mound detector (model output; prototype, not validated) on a cart ground camera: boxes mark new and week-old mounds, with the model's confidence. Demo-only model, trained on footage that includes this pass.",
+      "title": "Gopher mounds: prototype model output",
+      "caption": "Early mound detector (model output; prototype, not validated) on a cart ground camera: boxes mark mounds, with the model's age estimates and confidence. Demo-only model, trained on footage that includes this pass.",
       "camera": "Cart ground camera",
       "sources": {
         "mp4": "/assets/media/gophers-age-01/gophers-age-01-1080.mp4",
@@ -416,7 +418,9 @@
         "image": "/sample-report/photo-5.webp"
       },
       "width": 840,
-      "height": 630
+      "height": 630,
+      "feature": false,
+      "in_log": false
     },
     {
       "id": "report-mark-10",
@@ -436,7 +440,9 @@
         "image": "/sample-report/photo-10.webp"
       },
       "width": 840,
-      "height": 630
+      "height": 630,
+      "feature": false,
+      "in_log": false
     },
     {
       "id": "report-mark-13",
@@ -456,7 +462,9 @@
         "image": "/sample-report/photo-13.webp"
       },
       "width": 840,
-      "height": 630
+      "height": 630,
+      "feature": false,
+      "in_log": false
     },
     {
       "id": "report-mark-02",
@@ -477,7 +485,8 @@
         "image": "/sample-report/photo-2.webp"
       },
       "width": 840,
-      "height": 630
+      "height": 630,
+      "in_log": false
     },
     {
       "id": "photo-vineyard",
@@ -495,7 +504,8 @@
         "image": "/assets/cart-vineyard.webp"
       },
       "width": 600,
-      "height": 800
+      "height": 800,
+      "in_log": false
     },
     {
       "id": "photo-orchard-row",
@@ -504,16 +514,17 @@
       "category": "cart",
       "labels": "none",
       "feature": false,
-      "title": "An orchard row at dusk",
-      "caption": "The sensor cart in an orchard row at dusk.",
+      "title": "The cart in the orchard",
+      "caption": "The cart's front camera crossbar during an October orchard visit.",
       "site": "Okanagan orchard",
-      "camera": "Phone",
-      "alt": "The sensor cart in an orchard row at dusk",
+      "camera": "Pixel phone",
+      "alt": "The sensor cart and front cameras in an orchard row",
       "sources": {
         "image": "/assets/cart-orchard-row.webp"
       },
       "width": 600,
-      "height": 800
+      "height": 800,
+      "date": "2026-10"
     },
     {
       "id": "photo-crossbar",
@@ -522,16 +533,17 @@
       "category": "cart",
       "labels": "none",
       "feature": false,
-      "title": "Front sensor crossbar",
-      "caption": "The cart's camera crossbar with the GPS antenna and phone mount, October 2026.",
+      "title": "Front camera crossbar",
+      "caption": "A closer view of the cart's cameras and GPS antenna during an October orchard visit.",
       "site": "Okanagan orchard",
-      "camera": "Phone",
-      "alt": "The cart's camera crossbar with four cameras, the GPS antenna and the phone mount",
+      "camera": "Pixel phone",
+      "alt": "The cart's front cameras and GPS antenna",
       "sources": {
         "image": "/assets/cart-crossbar-2026-10.webp"
       },
-      "width": 1400,
-      "height": 1860
+      "width": 1600,
+      "height": 900,
+      "date": "2026-10"
     },
     {
       "id": "photo-orchard-side",
@@ -540,16 +552,17 @@
       "category": "cart",
       "labels": "none",
       "feature": false,
-      "title": "Between apple rows",
-      "caption": "The sensor cart between rows of apple trees, seen from the side.",
-      "site": "Okanagan orchard",
-      "camera": "Phone",
-      "alt": "The sensor cart between rows of apple trees, seen from the side",
+      "title": "Between vineyard rows",
+      "caption": "The sensor cart between vineyard rows during an October visit.",
+      "site": "Okanagan vineyard",
+      "camera": "Pixel phone",
+      "alt": "The sensor cart between vineyard rows",
       "sources": {
         "image": "/assets/cart-orchard-side.webp"
       },
-      "width": 600,
-      "height": 800
+      "width": 1600,
+      "height": 900,
+      "date": "2026-10"
     }
   ]
 }
