@@ -199,6 +199,78 @@
       "camera": "Screen recording"
     },
     {
+      "id": "mounds-cluster",
+      "public": true,
+      "status": "ready",
+      "sources": {
+        "mp4": "/assets/media/mounds-cluster/mounds-cluster-1080.mp4",
+        "mp4_720": "/assets/media/mounds-cluster/mounds-cluster-720.mp4",
+        "poster": "/assets/media/mounds-cluster/mounds-cluster-poster.webp"
+      },
+      "fps": 15,
+      "duration": 10.0,
+      "category": "gophers",
+      "labels": "model-reviewed",
+      "title": "Gopher mounds: a cluster",
+      "caption": "Early mound detector (model output; prototype, not validated) on a cart ground camera: boxes mark mounds, with the model's age guess and confidence. Demo-only model, trained on footage that includes this pass.",
+      "site": "Okanagan orchard",
+      "date": "2026-10"
+    },
+    {
+      "id": "mounds-week-a",
+      "public": true,
+      "status": "ready",
+      "sources": {
+        "mp4": "/assets/media/mounds-week-a/mounds-week-a-1080.mp4",
+        "mp4_720": "/assets/media/mounds-week-a/mounds-week-a-720.mp4",
+        "poster": "/assets/media/mounds-week-a/mounds-week-a-poster.webp"
+      },
+      "fps": 15,
+      "duration": 9.8,
+      "category": "gophers",
+      "labels": "model-reviewed",
+      "title": "Gopher mounds: week-old",
+      "caption": "Early mound detector (model output; prototype, not validated) on a cart ground camera: boxes mark mounds, with the model's age guess and confidence. Demo-only model, trained on footage that includes this pass.",
+      "site": "Okanagan orchard",
+      "date": "2026-10"
+    },
+    {
+      "id": "mounds-week-b",
+      "public": true,
+      "status": "ready",
+      "sources": {
+        "mp4": "/assets/media/mounds-week-b/mounds-week-b-1080.mp4",
+        "mp4_720": "/assets/media/mounds-week-b/mounds-week-b-720.mp4",
+        "poster": "/assets/media/mounds-week-b/mounds-week-b-poster.webp"
+      },
+      "fps": 15,
+      "duration": 9.8,
+      "category": "gophers",
+      "labels": "model-reviewed",
+      "title": "Gopher mounds: week-old, second row",
+      "caption": "Early mound detector (model output; prototype, not validated) on a cart ground camera: boxes mark mounds, with the model's age guess and confidence. Demo-only model, trained on footage that includes this pass.",
+      "site": "Okanagan orchard",
+      "date": "2026-10"
+    },
+    {
+      "id": "stakes-model-01",
+      "public": true,
+      "status": "ready",
+      "sources": {
+        "mp4": "/assets/media/stakes-model-01/stakes-model-01-1080.mp4",
+        "mp4_720": "/assets/media/stakes-model-01/stakes-model-01-720.mp4",
+        "poster": "/assets/media/stakes-model-01/stakes-model-01-poster.webp"
+      },
+      "fps": 15,
+      "duration": 10.0,
+      "category": "stakes",
+      "labels": "model-reviewed",
+      "title": "Irrigation stakes: leaning and upright",
+      "caption": "Early stake detector (model output; prototype, not validated) on phone video: boxes mark leaning and upright sprinkler stakes. Demo-only model, trained on footage that includes this pass.",
+      "site": "Okanagan orchard",
+      "date": "2026-10"
+    },
+    {
       "id": "gophers-age-01",
       "status": "ready",
       "public": true,
@@ -215,7 +287,9 @@
       "fps": 30,
       "duration": 19.97,
       "site": "Okanagan orchard",
-      "date": "2026-10"
+      "date": "2026-10",
+      "feature": false,
+      "in_log": false
     },
     {
       "id": "stakes-angle-01",
