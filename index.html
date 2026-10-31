@@ -316,8 +316,8 @@
 
     <div class="wrap hero-inner" data-load-reveal>
       <p class="eyebrow">Field robotics · Kelowna, BC</p>
-      <h1 id="hero-title" aria-label="Plant-level data for orchards and vineyards.">
-        <span class="line-mask" aria-hidden="true"><span>Plant-level data</span></span>
+      <h1 id="hero-title" aria-label="Field data for orchards and vineyards.">
+        <span class="line-mask" aria-hidden="true"><span>Field data</span></span>
         <span class="line-mask" aria-hidden="true" style="--i:1"><span>for <em>orchards and</em></span></span>
         <span class="line-mask" aria-hidden="true" style="--i:2"><span><em>vineyards.</em></span></span>
       </h1>
@@ -356,7 +356,7 @@
       </div>
       <div class="problems">
         <article class="reveal" style="--i:0"><span class="n">01 / 03</span><h3>Found late</h3><p>Gopher mounds and ground damage can be easy to miss until the trees or vines above them are already affected.</p></article>
-        <article class="reveal" style="--i:1"><span class="n">02 / 03</span><h3>Hard to find again</h3><p>A problem spotted mid-row often isn't tied to a precise location, so follow-up can mean walking the row again.</p></article>
+        <article class="reveal" style="--i:1"><span class="n">02 / 03</span><h3>Hard to find again</h3><p>A problem spotted mid-row may not be tied to a precise location, so follow-up can mean walking the row again.</p></article>
         <article class="reveal" style="--i:2"><span class="n">03 / 03</span><h3>Hard to compare</h3><p>Without a consistent record, it can be hard to tell whether a block is getting better or worse over a season.</p></article>
       </div>
     </div>
@@ -382,15 +382,15 @@
       <ul class="outcomes">
         <li class="reveal" style="--i:0">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
-          <h3>Mark gopher activity</h3><p>Mounds are marked during the pass and checked against the camera frames by a person.</p>
+          <h3>Mark gopher activity</h3><p>Mounds are marked by the operator during the pass; a person reviews candidate findings before they go in a report.</p>
         </li>
         <li class="reveal" style="--i:1">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
-          <h3>Go straight to the problem</h3><p>Each finding is tied to a row and an approximate position, so follow-up starts at the spot rather than with another walk of the whole block.</p>
+          <h3>Go straight to the problem</h3><p>Each finding is tied to a row and an approximate position, so a follow-up check can start at the spot.</p>
         </li>
         <li class="reveal" style="--i:2">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></span>
-          <h3>Compare passes over a season</h3><p>Findings are tied to row and position, so the same row can be compared between visits.</p>
+          <h3>Compare passes as the season goes on</h3><p>Findings are tied to row and position, so the same row can be compared between visits.</p>
         </li>
       </ul>
     </div>
@@ -419,7 +419,7 @@
                   <img src="/assets/media/pass-review/pass-review-poster.webp" width="1920" height="1080" loading="lazy" alt="The same camera frames with prototype model boxes on new and week-old gopher mounds">
                 </div>
                 <div class="shade"></div>
-                <span class="chip layer-tag">Prototype model, not validated</span>
+                <span class="chip layer-tag">Prototype model, demo-only, not validated</span>
               </div>
               <div class="layer" data-step="3">
                 <img src="/sample-report/d2-map-pass.webp" width="1120" height="700" loading="lazy" alt="Aerial map of an apple block with each numbered operator mark pinned on the scanned rows">
@@ -445,8 +445,8 @@
           <ol class="pass-steps" data-pass-steps>
             <li class="on"><span class="k">01</span><h3>Walk the row</h3><p>The operator pushes the cart through the block at walking pace.</p></li>
             <li><span class="k">02</span><h3>Capture</h3><p>The installed cameras, lidar and GPS record during the pass; capture quality is still being tuned. The operator marks anything worth a closer look.</p></li>
-            <li><span class="k">03</span><h3>Review</h3><p>An early model proposes candidate mounds; a person confirms or rejects each one before it counts.</p></li>
-            <li><span class="k">04</span><h3>Report</h3><p>Confirmed findings go back to the grower by row and location.</p></li>
+            <li><span class="k">03</span><h3>Review</h3><p>An early model ranks camera frames for a person to review; the person confirms or rejects each mark before it counts.</p></li>
+            <li><span class="k">04</span><h3>Report</h3><p>Reviewed findings go back to the grower by row and location, as leads to check on the ground.</p></li>
           </ol>
         </div>
       </div>
@@ -456,10 +456,10 @@
       <div class="specs">
         <div class="reveal">
           <h3>Technical details</h3>
-          <p>The cart's frame and interfaces are designed so new capabilities can be added as the platform grows.</p>
+          <p>We aim to add capabilities to the same platform over time.</p>
         </div>
         <dl class="reveal" style="--i:1">
-          <div><dt>Platform</dt><dd>Human-pushed aluminum cart, about 0.9 × 1.2 m and 30 kg</dd></div>
+          <div><dt>Platform</dt><dd>Human-pushed cart, about 0.9 × 1.2 m and 30 kg</dd></div>
           <div><dt>Row width</dt><dd>At least 1.5 m clear between canopy</dd></div>
           <div><dt>Cameras</dt><dd>Colour ground cameras and monochrome navigation cameras. Higher-resolution and near-infrared cameras are planned.</dd></div>
           <div><dt>Lidar, GPS, IMU</dt><dd>Shape and location data so each finding maps back to a row and position</dd></div>
@@ -496,7 +496,7 @@
           <div class="chips" data-clip-chips><span class="chip prov model-reviewed">Model output, checked by a person</span></div>
         </div>
         <div class="sees-copy">
-          <span class="chip mint"><span class="dot"></span>In field testing</span>
+          <span class="chip mint"><span class="dot"></span>Prototype in training</span>
           <h3>Gopher mounds</h3>
           <p>Grower reports stay human-confirmed. Gopher detection is still a prototype; field accuracy has not been validated.</p>
           <ul>
@@ -509,14 +509,14 @@
 
       <div class="sees-panel" role="tabpanel" id="panel-stakes" aria-labelledby="tab-stakes" hidden>
         <div class="sees-media" data-clip-cat="stakes">
-          <div class="pending-media"><div><b>Stake clips</b>No clip published yet</div></div>
+          <div class="pending-media"><div><b>Stake clips</b>Reviewed-label frames are in the field log</div></div>
           <div class="shade"></div>
           <div class="chips" data-clip-chips></div>
         </div>
         <div class="sees-copy">
           <span class="chip amber"><span class="dot"></span>In development</span>
           <h3>Irrigation stakes</h3>
-          <p>Irrigation-stake checks are a grower-requested direction for the cart.</p>
+          <p>Irrigation-stake checks are a direction growers have shown interest in.</p>
           <ul>
             <li><span>Focus</span><span>Irrigation-stake checks</span></li>
             <li><span>Model</span><span>In development</span></li>
@@ -536,7 +536,7 @@
           <p>Canopy scanning is planned; it is not a validated capability today.</p>
           <ul>
             <li><span>Status</span><span>Planned canopy scanning</span></li>
-            <li><span>On the roadmap</span><span>Late 2026</span></li>
+            <li><span>On the roadmap</span><span>No date set</span></li>
           </ul>
         </div>
       </div>
@@ -554,9 +554,9 @@
       <div class="section-head">
         <div class="reveal">
           <p class="eyebrow"><span class="num">04</span>What you get back</p>
-          <h2>A map of your block, with every finding pinned.</h2>
+          <h2>A map of your block, with every mark pinned.</h2>
         </div>
-        <p class="lead reveal" style="--i:1">After a visit, you get a short report: a map of where each mark is, and what the cameras saw there, so you can go straight to it.</p>
+        <p class="lead reveal" style="--i:1">After a visit, you get a short report: a map of where each mark is, with a camera clip for the marks the operator approved, so you can go and check the spot.</p>
       </div>
 
       <div class="report">
@@ -590,7 +590,7 @@
       <div class="section-head">
         <div class="reveal">
           <p class="eyebrow"><span class="num">05</span>Pilots</p>
-          <h2>What a pilot involves.</h2>
+          <h2>What a demo or pilot involves.</h2>
         </div>
         <p class="lead reveal" style="--i:1">We offer free field demos to Okanagan growers this season, and a pilot can follow a demo. Here's what to expect.</p>
       </div>
@@ -599,13 +599,13 @@
         <li><h3>Intro call</h3><p>We talk through your blocks, what you're watching for, and which rows make sense to start with. We'll also ask what other pain points you have, and any ideas you have for the platform.</p></li>
         <li><h3>Site visit</h3><p>We walk the agreed rows with the cart. We'll agree on which rows and how long with you up front, and schedule around your work.</p></li>
         <li><h3>Review</h3><p>Every candidate finding is checked by a person, and anything we couldn't confirm is marked that way.</p></li>
-        <li><h3>Your report</h3><p>You get your block map and findings, and we go through them together. Early on every finding is reviewed by hand, so turnaround is set per pilot and may shorten as detection improves.</p></li>
+        <li><h3>Your report</h3><p>You get your block map and findings, and we go through them together. Early on every finding is reviewed by hand, so turnaround is agreed with you up front and may shorten as detection improves.</p></li>
       </ol>
 
       <div class="terms reveal">
         <div><h3>Cost</h3><p>Field demos are free. If a pilot follows, we agree its terms with you in writing first.</p></div>
         <div><h3>Your data</h3><p>You own the raw data collected on your land. We keep a copy to train our detection models, and delete it after training if you ask.</p></div>
-        <div><h3>Disruption</h3><p>The cart is pushed by hand down existing rows and doesn't touch the trees or vines.</p></div>
+        <div><h3>Disruption</h3><p>The cart is pushed by hand down existing rows with at least 1.5 m clear and doesn't need to touch the trees or vines.</p></div>
       </div>
     </div>
   </section>
@@ -618,11 +618,11 @@
           <p class="eyebrow"><span class="num">06</span>Roadmap</p>
           <h2>From recording rows to working them.</h2>
         </div>
-        <p class="lead reveal" style="--i:1">The cart's frame and interfaces are designed so new capabilities can be added as the platform grows.</p>
+        <p class="lead reveal" style="--i:1">We aim to add capabilities to the same platform over time.</p>
       </div>
       <ol class="roadmap">
         <li class="now reveal" style="--i:0"><time>Fall 2026 · Now</time><h3>Record gopher activity for review</h3><p>Free field demos with Okanagan growers, with each finding checked by a reviewer.</p></li>
-        <li class="reveal" style="--i:1"><time>Late 2026</time><h3>Ground and canopy in the same pass</h3><p>Planned: ground issues and canopy condition recorded alongside gopher activity, without a second walk.</p></li>
+        <li class="reveal" style="--i:1"><time>Next</time><h3>Ground and canopy in the same pass</h3><p>Planned: ground issues and canopy condition recorded alongside gopher activity, without a second walk.</p></li>
         <li class="reveal" style="--i:2"><time>2027</time><h3>Leaf scanner</h3><p>A bench prototype reads relative leaf reflectance. It is not yet calibrated against lab tests, so it gives no nutrient advice; pairing it with lab tests is planned for 2027. Soil-probe timing depends on scanner progress and funding.</p></li>
         <li class="reveal" style="--i:3"><time>Beyond</time><h3>Less walking, more doing</h3><p>Under-row weeder field testing is planned for 2028. Pruning follows on a robot of its own, with no date set.</p></li>
       </ol>
@@ -637,7 +637,7 @@
         <h2>Questions growers ask.</h2>
       </div>
       <div class="faq reveal" style="--i:1">
-        <details><summary>Does the cart touch or damage the trees?</summary><p>No. It's pushed by hand down the existing row and only takes pictures and measurements. Nothing on it contacts the trees, vines or fruit.</p></details>
+        <details><summary>Does the cart touch or damage the trees?</summary><p>No. It's pushed by hand down an existing row with at least 1.5 m clear and only takes pictures and measurements; nothing on it is meant to touch the trees, vines or fruit.</p></details>
         <details><summary>Do I need Wi-Fi or power in the block?</summary><p>No. The cart runs on its own battery, and the operator's phone provides the data connection.</p></details>
         <details><summary>Will it slow down my crew?</summary><p>The cart moves at walking pace down one row at a time, and visits are scheduled around your work.</p></details>
         <details><summary>What happens to my data?</summary><p>You own the raw data collected on your land. We keep a copy to train our detection models, and delete it after training if you ask.</p></details>
@@ -659,7 +659,7 @@
         <h2>Built in the Okanagan, guided by growers.</h2>
         <div class="prose" style="margin-top:2rem">
           <p class="big">Iron Leaf Robotics Inc. is a British Columbia company founded in Kelowna by Ryan Collins, a solo founder and registered EIT with an electrical engineering degree (mechatronics option), production robotics experience at 4AG Robotics and aerospace electrical leadership at UBC Okanagan. Ryan has been full-time on Iron Leaf since October 20, 2026.</p>
-          <p>We design and build the cart in-house, and test it on local orchards and vineyards. That keeps iteration fast and keeps the work tied to problems growers actually have.</p>
+          <p>Ryan designs and builds the cart and tests it on local orchards and vineyards. That keeps iteration fast and keeps the work tied to problems growers actually have.</p>
           <p>Our approach is to understand why the established answer exists before replacing it, and to only count what the field data supports.</p>
         </div>
       </div>
@@ -698,7 +698,7 @@
     <div class="top">
       <div>
         <a class="lockup" href="/" aria-label="Iron Leaf Robotics home"><img src="/assets/ilr-lockup.svg" alt="Iron Leaf Robotics" width="874" height="180"></a>
-        <p style="margin:0;max-width:22rem">Plant-level data for orchards and vineyards. Designed and built in Kelowna, BC.</p>
+        <p style="margin:0;max-width:22rem">Field data for orchards and vineyards. Designed and built in Kelowna, BC.</p>
       </div>
       <div>
         <h4>Site</h4>

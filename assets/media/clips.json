@@ -196,8 +196,7 @@
       "title": "The operator app during a pass",
       "caption": "Screen recording of the cart's operator app.",
       "date": "2026-10",
-      "camera": "Screen recording",
-      "shot": "Shot list #8."
+      "camera": "Screen recording"
     },
     {
       "id": "gophers-age-01",
@@ -246,8 +245,7 @@
       "labels": "hand",
       "title": "Dripline and canopy edge",
       "caption": "Early dripline and canopy-edge labels on cart footage.",
-      "camera": "Cart camera",
-      "shot": "CV backlog. Set labels to hand or model-reviewed to match how this clip's boxes were made."
+      "camera": "Cart camera"
     },
     {
       "id": "report-mark-05",
