@@ -91,54 +91,55 @@
   .outcomes p { color: var(--muted); margin: 0; }
   @media (max-width: 54rem) { .outcomes { grid-template-columns: 1fr; gap: 1.75rem; } }
 
-  /* ===== How a pass works (scroll-driven) ===== */
-  .pass { position: relative; height: calc(var(--steps) * 85svh + 20svh); }
-  .pass-sticky { position: sticky; top: var(--nav-h); height: calc(100svh - var(--nav-h)); display: flex; align-items: center; }
+  /* ===== How a pass works: deliberate choices in normal page flow ===== */
+  .pass { position: relative; padding: clamp(2rem, 5vw, 4rem) 0; }
+  .pass-viewer { position: relative; }
   .pass-grid { width: 100%; display: grid; grid-template-columns: 1.25fr .75fr; gap: 3.5rem; align-items: center; }
-  .pass-title { font-family: var(--mono); font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; color: var(--mint); margin-bottom: 1.5rem; display: flex; justify-content: space-between; }
-  .pass-title .count { color: var(--dim); font-variant-numeric: tabular-nums; }
-  .pass-stage { position: relative; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); background: var(--bg-deep); aspect-ratio: 16 / 10; max-height: calc(100svh - var(--nav-h) - 11rem); width: 100%; }
-  .pass-stage .layer { position: absolute; inset: 0; opacity: 0; transition: opacity .7s var(--ease-out); }
-  .pass-stage .layer > img, .pass-stage .layer > video { width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); transition: transform 1.6s var(--ease-out); }
+  .pass-title { font-family: var(--mono); font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; color: var(--mint); margin-bottom: 1rem; display: flex; justify-content: space-between; gap: 1rem; }
+  .pass-title .count { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .pass-stage { position: relative; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); background: var(--bg-deep); aspect-ratio: 16 / 10; width: 100%; }
+  .pass-stage .layer { position: absolute; inset: 0; opacity: 0; transition: opacity .3s var(--ease-out); }
+  .pass-stage .layer > img, .pass-stage .layer > video { width: 100%; height: 100%; object-fit: cover; }
   .pass[data-step="0"] .layer[data-step="0"], .pass[data-step="1"] .layer[data-step="1"],
   .pass[data-step="2"] .layer[data-step="2"], .pass[data-step="3"] .layer[data-step="3"] { opacity: 1; }
-  .pass[data-step="0"] .layer[data-step="0"] > *, .pass[data-step="1"] .layer[data-step="1"] > *,
-  .pass[data-step="2"] .layer[data-step="2"] > *, .pass[data-step="3"] .layer[data-step="3"] > * { transform: scale(1); }
-  .layer .layer-tag { position: absolute; left: 1rem; bottom: 1rem; z-index: 4; }
-  .layer .shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(7,16,12,.75), rgba(7,16,12,0) 45%); z-index: 2; }
-  .layer.review img { object-fit: contain; background: #000; }
+  .layer .layer-tag { position: absolute; left: 1rem; bottom: 1rem; z-index: 4; max-width: calc(100% - 2rem); }
+  .layer .shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(7,16,12,.75), rgba(7,16,12,0) 45%); z-index: 2; pointer-events: none; }
+  .layer.review > img, .layer.report > img { object-fit: contain; background: var(--bg-deep); }
+  .pass-actions { display: flex; justify-content: space-between; align-items: center; gap: .75rem; margin-top: 1rem; }
+  .pass-actions[hidden] { display: none; }
+  .pass-actions button { min-height: 2.75rem; padding: .65rem 1rem; border: 1px solid var(--border-hi); border-radius: 999px; color: var(--text); background: var(--card); font: 500 .8rem var(--mono); cursor: pointer; }
+  .pass-actions button:hover:not(:disabled) { border-color: var(--mint); }
+  .pass-actions button:disabled { opacity: .4; cursor: default; }
+  .pass-hint { color: var(--dim); font: .72rem var(--mono); text-align: center; }
 
-  /* Row diagram */
-  .row-diagram { margin-top: .9rem; padding: .8rem 1.1rem .55rem; border-radius: 14px; background: var(--bg-deep); border: 1px solid var(--border); }
+  /* Workflow illustration: schematic, not field data. */
+  .row-diagram { margin-top: 1rem; padding: .8rem 1.1rem .55rem; border-radius: 14px; background: var(--bg-deep); }
   .row-diagram svg { width: 100%; height: auto; display: block; overflow: visible; }
   .row-diagram .tree { fill: #1E4A33; }
   .row-diagram .lane { stroke: var(--border-hi); stroke-dasharray: 2 5; }
-  .row-diagram .trail { stroke: var(--mint); stroke-width: 2; }
-  .row-diagram .cart { fill: var(--mint); }
-  .row-diagram .mk { fill: var(--amber); opacity: 0; transform-box: fill-box; transform-origin: center; transform: scale(0); transition: opacity .4s, transform .5s var(--ease-out), fill .4s; }
+  .row-diagram .trail { stroke: var(--mint); stroke-width: 2; transform-origin: 20px 28px; transform: scaleX(0); transition: transform .3s var(--ease-out); }
+  .row-diagram .cart { fill: var(--mint); transition: transform .3s var(--ease-out); }
+  .row-diagram .mk { fill: var(--amber); opacity: 0; transform-box: fill-box; transform-origin: center; transform: scale(0); transition: opacity .3s, transform .3s var(--ease-out), fill .3s; }
   .row-diagram .mk.on { opacity: 1; transform: scale(1); }
-  .row-diagram .ring { fill: none; stroke: var(--mint); stroke-width: 1.5; opacity: 0; transition: opacity .4s; }
+  .row-diagram .ring { fill: none; stroke: var(--mint); stroke-width: 1.5; opacity: 0; transition: opacity .3s; }
   .pass[data-step="2"] .row-diagram .ring.on, .pass[data-step="3"] .row-diagram .ring.on { opacity: 1; }
   .row-diagram .lbl { font-family: var(--mono); font-size: 9px; fill: var(--dim); letter-spacing: .08em; text-transform: uppercase; }
-  .pass-steps { list-style: none; margin: 0; padding: 0; position: relative; }
-  .pass-steps::before { content: ""; position: absolute; left: .45rem; top: .6rem; bottom: .6rem; width: 1px; background: var(--border); }
-  .pass-steps::after { content: ""; position: absolute; left: .45rem; top: .6rem; width: 1px; height: calc((100% - 1.2rem) * var(--p, 0)); background: var(--mint); }
-  .pass-steps li { position: relative; padding: 0 0 2.1rem 2.25rem; opacity: .38; transition: opacity .45s; }
-  .pass-steps li:last-child { padding-bottom: 0; }
-  .pass-steps li::before { content: ""; position: absolute; left: 0; top: .3rem; width: .9rem; height: .9rem; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--border-hi); transition: border-color .4s, background .4s; z-index: 1; }
-  .pass-steps li.on { opacity: 1; }
-  .pass-steps li.on::before { border-color: var(--mint); background: var(--mint); box-shadow: 0 0 0 5px var(--mint-soft); }
-  .pass-steps .k { display: block; font-family: var(--mono); font-size: .72rem; color: var(--dim); letter-spacing: .1em; margin-bottom: .3rem; }
-  .pass-steps h3 { font-size: 1.3rem; margin-bottom: .4rem; }
-  .pass-steps p { color: var(--muted); margin: 0; font-size: 1rem; }
-  /* Without sticky support, small screens, or reduced motion: plain stacked steps */
-  @media (max-width: 54rem), (prefers-reduced-motion: reduce) {
-    .pass { height: auto; }
-    .pass-sticky { position: static; height: auto; display: block; }
-    .pass-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .pass-schematic-note { margin: .4rem 0 0; color: var(--dim); font: .65rem var(--mono); text-align: center; }
+  .pass-steps { list-style: none; display: grid; gap: .65rem; margin: 0; padding: 0; }
+  .pass-step { display: block; width: 100%; padding: 1rem 1.15rem; border: 1px solid var(--border); border-radius: var(--radius-md); background: transparent; color: var(--text); text-align: left; font: inherit; cursor: pointer; transition: border-color .3s, background .3s; }
+  .pass-step:hover:not(:disabled) { border-color: var(--border-hi); background: var(--bg-raise); }
+  .pass-step[aria-pressed="true"] { border-color: var(--mint); background: var(--mint-soft); }
+  .pass-step:disabled { cursor: default; }
+  .pass-step .k { display: block; font-family: var(--mono); font-size: .7rem; color: var(--mint); letter-spacing: .1em; margin-bottom: .3rem; }
+  .pass-step-title { display: block; font-size: 1.2rem; font-weight: 700; margin-bottom: .35rem; }
+  .pass-step-copy { display: block; color: var(--muted); font-size: .94rem; line-height: 1.5; }
+  @media (max-width: 54rem) {
+    .pass-grid { grid-template-columns: 1fr; gap: 1.5rem; }
     .pass-stage { aspect-ratio: 4 / 3; }
-    .pass-steps li { opacity: 1; }
-    .pass-steps::after { display: none; }
+    .pass-step { padding: .85rem 1rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pass-stage .layer, .pass-step, .row-diagram .trail, .row-diagram .cart, .row-diagram .mk, .row-diagram .ring { transition: none; }
   }
 
   /* Spec sheet */
@@ -272,6 +273,28 @@
   .cta-side { display: grid; gap: .7rem; }
   .cta-side .fine { color: var(--muted); font-size: .85rem; margin: .4rem 0 0; }
   @media (max-width: 54rem) { .cta-inner { grid-template-columns: 1fr; } .cta-band { min-height: 36rem; } }
+
+  .sample-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.3rem; }
+  .sample-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--card); color: var(--text); text-decoration: none; transition: border-color .2s, transform .2s; }
+  .sample-card:hover { border-color: var(--mint); transform: translateY(-3px); }
+  .sample-card:focus-visible { outline: 2px solid var(--mint); outline-offset: 5px; }
+  .sample-card img { display: block; width: 100%; height: auto; aspect-ratio: 8 / 5; object-fit: cover; object-position: top; border-bottom: 1px solid var(--border); background: var(--bg-deep); }
+  .sample-card-copy { padding: 1.35rem; display: flex; flex-direction: column; flex: 1; }
+  .sample-card .k { color: var(--mint); font: .72rem var(--mono); letter-spacing: .08em; margin-bottom: .8rem; }
+  .sample-card h3 { font: 700 1.55rem var(--display); margin: 0 0 .65rem; }
+  .sample-card p { color: var(--muted); margin: 0 0 1.4rem; font-size: .95rem; }
+  .sample-card .sample-open { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border); font-weight: 600; }
+  .sample-note { color: var(--muted); font-size: .92rem; max-width: 57rem; margin: 1.6rem 0 0; }
+  .samples-intro { padding: calc(var(--nav-h) + 5rem) 0 3rem; }
+  .samples-intro h1 { max-width: 50rem; }
+  .samples-intro .lead { max-width: 46rem; }
+  .samples-page { padding-bottom: 5rem; }
+  .samples-back { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+  .layer a.layer-tag { min-height: 44px; background: var(--bg-deep); color: var(--mint); text-decoration: none; }
+  .layer a.layer-tag:focus-visible { outline: 2px solid var(--mint); outline-offset: -4px; }
+  @media (max-width: 58rem) { .sample-grid { grid-template-columns: 1fr; } .sample-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .sample-card img { height: 100%; border-bottom: 0; border-right: 1px solid var(--border); } }
+  @media (max-width: 36rem) { .sample-card { display: flex; } .sample-card img { height: auto; border-right: 0; border-bottom: 1px solid var(--border); } .samples-intro { padding-top: calc(var(--nav-h) + 3rem); } }
+  @media (prefers-reduced-motion: reduce) { .sample-card { transition: none; } .sample-card:hover { transform: none; } }
 </style>
 </head>
 
@@ -293,7 +316,7 @@
     <nav class="nav-links" id="nav-links" aria-label="Main">
       <a href="#platform">Platform</a>
       <a href="#sees">What it sees</a>
-      <a href="#report">Sample report</a>
+      <a href="#report">Sample reports</a>
       <a href="#pilots">Pilots</a>
       <a href="/field-log/">Field log</a>
       <a href="#about">About</a>
@@ -325,7 +348,7 @@
       <div class="actions reveal" style="--i:5">
         <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSe5dzY7OfdAvxtrpBQ2OQt7nHWoGa4omEySV5xiUur_IMOnBg/viewform" target="_blank" rel="noopener">Book a free field demo
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn ghost" href="#report">See a sample report</a>
+        <a class="btn ghost" href="#report">Explore sample reports</a>
       </div>
     </div>
 
@@ -395,58 +418,57 @@
       </ul>
     </div>
 
-    <!-- How a pass works: scroll moves through the four steps; the row diagram follows along -->
-    <div class="pass" data-pass data-step="0" style="--steps:4">
-      <div class="pass-sticky">
+    <!-- How a pass works: choose a stage; page scrolling stays normal. -->
+    <div class="pass" data-pass data-step="0">
+      <div class="pass-viewer">
         <div class="wrap pass-grid">
           <div>
-            <div class="pass-title"><span>How a pass works</span><span class="count" data-pass-count>01 / 04</span></div>
-            <div class="pass-stage">
-              <div class="layer" data-step="0">
-                <div class="media" data-clip="pass-walk" style="position:absolute;inset:0">
-                  <img src="/assets/media/pass-walk/pass-walk-poster.webp" width="1920" height="1080" loading="lazy" alt="The cart's camera view during an operator-marked interval on an orchard pass">
+            <div class="pass-title"><span>How a pass works</span><span class="count" data-pass-count aria-live="polite" aria-atomic="true">1 of 4</span></div>
+            <div class="pass-stage" id="pass-stage" role="region" aria-labelledby="pass-step-1">
+              <div class="layer" data-step="0" aria-hidden="false">
+                <div class="media" data-clip="field-tracking" style="position:absolute;inset:0">
+                  <img src="/assets/media/field-tracking/field-tracking-poster.webp" width="1280" height="720" loading="lazy" alt="An operator pushes the cart through an autumn orchard row">
                 </div>
                 <div class="shade"></div>
               </div>
-              <div class="layer" data-step="1">
-                <div class="media" data-clip="pass-capture" style="position:absolute;inset:0">
-                  <img src="/assets/media/pass-capture/pass-capture-poster.webp" width="1920" height="1080" loading="lazy" alt="The cart's OAK-D wide camera view down an orchard row">
+              <div class="layer" data-step="1" aria-hidden="true" inert>
+                <div class="media" data-clip="oak-vineyard-row" style="position:absolute;inset:0">
+                  <img src="/assets/media/oak-vineyard-row/oak-vineyard-row-poster.webp" width="1280" height="720" loading="lazy" alt="The cart's OAK-D wide camera view between vineyard rows">
                 </div>
                 <div class="shade"></div>
               </div>
-              <div class="layer" data-step="2">
-                <div class="media" data-clip="pass-review" style="position:absolute;inset:0">
-                  <img src="/assets/media/pass-review/pass-review-poster.webp" width="1920" height="1080" loading="lazy" alt="Ground camera frames with prototype model boxes and model age estimates on gopher mounds">
-                </div>
-                <div class="shade"></div>
-                <span class="chip layer-tag">Prototype model, demo-only, not validated</span>
+              <div class="layer review" data-step="2" aria-hidden="true" inert>
+                <img src="/sample-report/orchard-c/review.webp" loading="lazy" alt="Camera photo with annotations from an anonymous sample report">
+                <span class="chip layer-tag">Source report annotations</span>
               </div>
-              <div class="layer" data-step="3">
-                <img src="/sample-report/d2-map-pass.webp" width="1120" height="700" loading="lazy" alt="Aerial map of an apple block with each numbered operator mark pinned on the scanned rows">
-                <div class="shade"></div>
-                <span class="chip layer-tag">Sample report · Okanagan orchard</span>
+              <div class="layer report" data-step="3" aria-hidden="true" inert>
+                <img src="/sample-report/orchard-c/preview.webp" loading="lazy" alt="Anonymous ground scouting report with a schematic row map">
+                <a class="chip layer-tag" href="/sample-report/orchard-c/">Explore this report &#8599;</a>
               </div>
-
             </div>
-            <!-- Schematic, not data: a cart moving down one row -->
+            <div class="pass-actions" data-pass-actions hidden>
+              <button type="button" data-pass-prev disabled aria-controls="pass-stage">Previous</button>
+              <span class="pass-hint">Choose any step</span>
+              <button type="button" data-pass-next aria-controls="pass-stage">Next</button>
+            </div>
             <div class="row-diagram" aria-hidden="true">
               <svg viewBox="0 0 600 74" data-row>
                 <g class="trees"></g>
                 <line class="lane" x1="20" y1="28" x2="580" y2="28"/>
-                <line class="trail" x1="20" y1="28" x2="20" y2="28" data-trail/>
+                <line class="trail" x1="20" y1="28" x2="580" y2="28" data-trail/>
                 <g data-marks></g>
                 <rect class="cart" x="14" y="21" width="12" height="14" rx="2" data-cart/>
                 <text class="lbl" x="20" y="70">Row start</text>
                 <text class="lbl" x="580" y="70" text-anchor="end">Row end</text>
               </svg>
             </div>
+            <p class="pass-schematic-note">Workflow illustration</p>
           </div>
-
-          <ol class="pass-steps" data-pass-steps>
-            <li class="on"><span class="k">01</span><h3>Walk the row</h3><p>The operator pushes the cart through the block at walking pace.</p></li>
-            <li><span class="k">02</span><h3>Capture</h3><p>The installed cameras, lidar and GPS record during the pass; capture quality is still being tuned. The operator marks anything worth a closer look.</p></li>
-            <li><span class="k">03</span><h3>Review</h3><p>An early model ranks camera frames for a person to review; the person confirms or rejects each mark before it counts.</p></li>
-            <li><span class="k">04</span><h3>Report</h3><p>Reviewed findings go back to the grower by row and location, as leads to check on the ground.</p></li>
+          <ol class="pass-steps" data-pass-steps aria-label="Pass stages">
+            <li class="on"><button class="pass-step" type="button" id="pass-step-1" data-pass-select="0" aria-controls="pass-stage" aria-pressed="true" disabled><span class="k">01</span><span class="pass-step-title">Walk the row</span><span class="pass-step-copy">The operator pushes the cart through the block at walking pace.</span></button></li>
+            <li><button class="pass-step" type="button" id="pass-step-2" data-pass-select="1" aria-controls="pass-stage" aria-pressed="false" disabled><span class="k">02</span><span class="pass-step-title">Capture</span><span class="pass-step-copy">The installed cameras, lidar and GPS record during the pass; capture quality is still being tuned. The operator marks anything worth a closer look.</span></button></li>
+            <li><button class="pass-step" type="button" id="pass-step-3" data-pass-select="2" aria-controls="pass-stage" aria-pressed="false" disabled><span class="k">03</span><span class="pass-step-title">Review</span><span class="pass-step-copy">An early model ranks camera frames for a person to review; the person confirms or rejects each mark before it counts.</span></button></li>
+            <li><button class="pass-step" type="button" id="pass-step-4" data-pass-select="3" aria-controls="pass-stage" aria-pressed="false" disabled><span class="k">04</span><span class="pass-step-title">Report</span><span class="pass-step-copy">Reviewed findings go back to the grower by row and location, as leads to check on the ground.</span></button></li>
           </ol>
         </div>
       </div>
@@ -548,39 +570,38 @@
     </div>
   </section>
 
-  <!-- ========== Sample report ========== -->
+  <!-- ========== Sample reports ========== -->
   <section id="report">
     <div class="wrap">
       <div class="section-head">
-        <div class="reveal">
-          <p class="eyebrow"><span class="num">04</span>What you get back</p>
-          <h2>A map of your block, with every mark pinned.</h2>
-        </div>
-        <p class="lead reveal" style="--i:1">After a visit, you get a short report: a map of where each mark is, with a camera clip for the marks the operator approved, so you can go and check the spot.</p>
+        <div><p class="eyebrow"><span class="num">04</span>What you get back</p><h2>From a field visit to a report you can use.</h2></div>
+        <p class="lead">Explore three ground scouting reports: row maps, operator marks and camera photos, brought together in one view.</p>
       </div>
-
-      <div class="report">
-        <div class="panel reveal">
-          <div class="panel-head"><h3>Okanagan orchard</h3><span>Sample visit</span></div>
-          <div class="mapwrap" style="aspect-ratio:1120/1600">
-            <img src="/sample-report/d2-map-pins.webp" width="1120" height="1600" loading="lazy" alt="Aerial view of an apple block with each numbered operator mark pinned on the rows the cart scanned">
+      <div class="sample-grid">
+        <a class="sample-card" href="/sample-report/orchard-a/">
+          <img src="/sample-report/orchard-a/preview.webp" width="1440" height="900" loading="lazy" alt="Orchard A sample report with a schematic row map">
+          <div class="sample-card-copy"><span class="k">01 / OCTOBER 2026</span><h3>Orchard A</h3>
+            <p>A ground scouting report with an interactive row map and 78 camera photos.</p>
+            <span class="sample-open">Explore this report <span aria-hidden="true">&#8599;</span></span>
           </div>
-          <p class="credit">Imagery: Regional District of Central Okanagan, 2018 (OBWB, GeoBC). Contains information licensed under the Open Government License – Regional District of Central Okanagan.</p>
-        </div>
-        <div class="reveal" style="--i:1">
-          <div class="panel">
-            <div class="panel-head"><h3>On the grower's phone</h3><span>Same report</span></div>
-            <div class="mapwrap" style="aspect-ratio:780/1688;max-width:20rem">
-              <img src="/sample-report/d2-phone.webp" width="780" height="1688" loading="lazy" alt="The sample report open on a phone: rows scanned, row covered and operator marks">
-            </div>
+        </a>
+        <a class="sample-card" href="/sample-report/orchard-b/">
+          <img src="/sample-report/orchard-b/preview.webp" width="1440" height="900" loading="lazy" alt="Orchard B sample report with a schematic row map">
+          <div class="sample-card-copy"><span class="k">02 / OCTOBER 2026</span><h3>Orchard B</h3>
+            <p>A ground scouting report with an interactive row map and 40 camera photos.</p>
+            <span class="sample-open">Explore this report <span aria-hidden="true">&#8599;</span></span>
           </div>
-        </div>
+        </a>
+        <a class="sample-card" href="/sample-report/orchard-c/">
+          <img src="/sample-report/orchard-c/preview.webp" width="1440" height="900" loading="lazy" alt="Orchard C sample report with a schematic row map">
+          <div class="sample-card-copy"><span class="k">03 / OCTOBER 2026</span><h3>Orchard C</h3>
+            <p>A ground scouting report with an interactive row map and 12 camera photos.</p>
+            <span class="sample-open">Explore this report <span aria-hidden="true">&#8599;</span></span>
+          </div>
+        </a>
       </div>
-      <div class="report-foot reveal">
-        <p>A real report from a demo visit to an Okanagan apple orchard, with the grower's name removed. Each pin is an operator mark; clips shown were reviewed before they went in.</p>
-        <a class="btn ghost" href="/sample-report/">See the full sample report
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
+      <p class="sample-note">These are anonymous copies of real field reports. Grower names, exact visit dates and location details have been removed. The maps show relative row layouts without aerial imagery. Findings are leads to check on the ground.</p>
+      <div class="report-foot"><a class="btn ghost" href="/sample-report/">Browse the sample reports <span aria-hidden="true">&#8594;</span></a></div>
     </div>
   </section>
 
@@ -670,8 +691,8 @@
   <section id="contact">
     <div class="wrap">
       <div class="cta-band reveal">
-        <div class="media grain" data-clip="field-silhouette">
-          <img class="still-drift" src="/assets/media/field-silhouette/field-silhouette-poster.webp" width="600" height="800" loading="lazy" alt="">
+        <div class="media grain" data-clip="field-demo">
+          <img class="still-drift" src="/assets/media/field-demo/field-demo-poster.webp" width="1280" height="720" loading="lazy" alt="">
         </div>
         <div class="cta-inner">
           <div>
@@ -683,7 +704,7 @@
             <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSe5dzY7OfdAvxtrpBQ2OQt7nHWoGa4omEySV5xiUur_IMOnBg/viewform" target="_blank" rel="noopener">Book a free field demo
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             <a class="btn ghost" href="mailto:rcollins@ironleafrobotics.ca?subject=Field%20demo">rcollins@ironleafrobotics.ca</a>
-            <a class="btn ghost" href="/sample-report/">View the sample report</a>
+            <a class="btn ghost" href="/sample-report/">View sample reports</a>
             <p class="fine">See our <a href="/privacy.html">privacy policy</a> for how we handle your information.</p>
           </div>
         </div>
@@ -705,7 +726,7 @@
         <ul>
           <li><a href="/#platform">Platform</a></li>
           <li><a href="/#sees">What it sees</a></li>
-          <li><a href="/sample-report/">Sample report</a></li>
+          <li><a href="/sample-report/">Sample reports</a></li>
           <li><a href="/#pilots">Pilots</a></li>
           <li><a href="/field-log/">Field log</a></li>
           <li><a href="/#roadmap">Roadmap</a></li>

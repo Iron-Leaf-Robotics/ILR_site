@@ -401,94 +401,6 @@
       "camera": "Cart camera"
     },
     {
-      "id": "report-mark-05",
-      "status": "ready",
-      "public": false,
-      "category": "gophers",
-      "labels": "hand",
-      "labels_note": "Confirmed by reviewer",
-      "title": "Gopher mound, mark #5",
-      "caption": "Row A2, 18 m from N end. A reviewer confirmed the mound from this camera frame.",
-      "site": "Okanagan vineyard",
-      "date": "2026-09",
-      "crop": "Wine grapes",
-      "camera": "Cart ground camera",
-      "alt": "A cart camera frame with a boxed gopher mound",
-      "sources": {
-        "image": "/sample-report/photo-5.webp"
-      },
-      "width": 840,
-      "height": 630,
-      "feature": false,
-      "in_log": false
-    },
-    {
-      "id": "report-mark-10",
-      "status": "ready",
-      "public": false,
-      "category": "gophers",
-      "labels": "hand",
-      "labels_note": "Confirmed by reviewer",
-      "title": "Gopher mound, mark #10",
-      "caption": "Row B1, 1–7 m from W end. A reviewer confirmed the mound from this camera frame.",
-      "site": "Okanagan vineyard",
-      "date": "2026-09",
-      "crop": "Wine grapes",
-      "camera": "Cart ground camera",
-      "alt": "A cart camera frame with a boxed gopher mound",
-      "sources": {
-        "image": "/sample-report/photo-10.webp"
-      },
-      "width": 840,
-      "height": 630,
-      "feature": false,
-      "in_log": false
-    },
-    {
-      "id": "report-mark-13",
-      "status": "ready",
-      "public": false,
-      "category": "gophers",
-      "labels": "hand",
-      "labels_note": "Confirmed by reviewer",
-      "title": "Gopher mound, mark #13",
-      "caption": "Off the rows, 4 m S of Row B1, 75 m from its W end. A reviewer confirmed the mound from this camera frame.",
-      "site": "Okanagan vineyard",
-      "date": "2026-09",
-      "crop": "Wine grapes",
-      "camera": "Cart ground camera",
-      "alt": "A cart camera frame with a boxed gopher mound",
-      "sources": {
-        "image": "/sample-report/photo-13.webp"
-      },
-      "width": 840,
-      "height": 630,
-      "feature": false,
-      "in_log": false
-    },
-    {
-      "id": "report-mark-02",
-      "status": "ready",
-      "public": false,
-      "category": "gophers",
-      "labels": "hand",
-      "labels_note": "Confirmed by reviewer",
-      "feature": false,
-      "title": "Gopher mound, mark #2",
-      "caption": "Row A1, 25 m from N end. A reviewer confirmed the mound from this camera frame.",
-      "site": "Okanagan vineyard",
-      "date": "2026-09",
-      "crop": "Wine grapes",
-      "camera": "Cart ground camera",
-      "alt": "A cart camera frame with a boxed gopher mound",
-      "sources": {
-        "image": "/sample-report/photo-2.webp"
-      },
-      "width": 840,
-      "height": 630,
-      "in_log": false
-    },
-    {
       "id": "photo-vineyard",
       "status": "ready",
       "public": false,
@@ -563,6 +475,29 @@
       "width": 1600,
       "height": 900,
       "date": "2026-10"
+    },
+    {
+      "id": "field-demo",
+      "status": "ready",
+      "public": true,
+      "category": "cart",
+      "labels": "none",
+      "feature": false,
+      "title": "The cart in orchard and vineyard rows",
+      "caption": "October orchard and vineyard footage of the operator and cart. Camera footage; no model overlay.",
+      "date": "2026-10",
+      "camera": "Pixel phone",
+      "sources": {
+        "mp4": "/assets/media/field-demo/field-demo-1080.mp4",
+        "mp4_720": "/assets/media/field-demo/field-demo-720.mp4",
+        "poster": "/assets/media/field-demo/field-demo-poster.webp",
+        "mp4_portrait": "/assets/media/field-demo/field-demo-portrait.mp4"
+      },
+      "site": "Okanagan",
+      "fps": 24,
+      "duration": 8.96,
+      "in_log": false,
+      "alt": "An operator pushing the cart through an orchard, a close view of its cameras, and the cart between vineyard rows"
     }
   ]
 }

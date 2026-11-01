@@ -151,16 +151,21 @@
     upd();
   }
 
-  /* ---------- How a pass works ---------- */
+  /* ---------- How a pass works: deliberate stage choices ---------- */
   const pass = $('[data-pass]');
   if (pass) {
     const steps = $$('[data-pass-steps] li', pass);
+    const choices = $$('[data-pass-select]', pass);
     const count = $('[data-pass-count]', pass);
+    const stage = $('.pass-stage', pass);
+    const previous = $('[data-pass-prev]', pass);
+    const next = $('[data-pass-next]', pass);
+    const actions = $('[data-pass-actions]', pass);
     const svg = $('[data-row]', pass);
-    const N = steps.length;
-    const marksX = [212, 344, 468];
-    const rejected = 1; // one candidate gets rejected at review, to show that step honestly
-    let cart, trail, marks = [], rings = [];
+    const N = choices.length;
+    const marksX = [164, 306, 468];
+    const rejected = 1; // schematic example, not a field result
+    let current = 0, cart, trail, marks = [], rings = [];
     if (svg) {
       const ns = 'http://www.w3.org/2000/svg';
       const trees = $('.trees', svg);
@@ -174,56 +179,54 @@
       });
       cart = $('[data-cart]', svg); trail = $('[data-trail]', svg);
     }
-    const render = (p, step) => {
-      pass.dataset.step = step;
-      steps.forEach((li, i) => li.classList.toggle('on', i <= step));
-      $('[data-pass-steps]', pass).style.setProperty('--p', p.toFixed(3));
-      if (count) count.textContent = `0${step + 1} / 0${N}`;
+    const select = (requested, focus = false) => {
+      if (!N) return;
+      current = clamp(requested, 0, N - 1);
+      pass.dataset.step = current;
+      steps.forEach((li, i) => li.classList.toggle('on', i === current));
+      choices.forEach((button, i) => button.setAttribute('aria-pressed', String(i === current)));
+      if (count) count.textContent = `${current + 1} of ${N}`;
+      if (stage) stage.setAttribute('aria-labelledby', choices[current].id);
+      if (previous) previous.disabled = current === 0;
+      if (next) next.disabled = current === N - 1;
       $$('.layer[data-step]', pass).forEach((layer) => {
-        const active = Number(layer.dataset.step) === step;
+        const active = Number(layer.dataset.step) === current;
         layer.inert = !active;
         layer.setAttribute('aria-hidden', String(!active));
         $$('video', layer).forEach((v) => {
           if (!active) v.pause(); else if (v._autoplay) v._autoplay();
         });
       });
-      if (!svg) return;
-      const x = 20 + 560 * clamp((p - 0.04) / 0.62, 0, 1);
-      cart.setAttribute('x', x - 6); trail.setAttribute('x2', x);
-      marks.forEach((m, i) => {
-        const on = step >= 1 && x >= marksX[i];
-        m.classList.toggle('on', on);
-        const rej = step >= 2 && i === rejected;
-        m.style.fill = rej ? 'var(--dim)' : '';
-        rings[i].classList.toggle('on', on && !rej);
-      });
-    };
-    const scrollMode = () => !small.matches && !reduce.matches && CSS.supports('position', 'sticky');
-    let ticking = false;
-    const upd = () => {
-      ticking = false;
-      if (!scrollMode()) return;
-      const r = pass.getBoundingClientRect();
-      const navH = 72;
-      const span = r.height - (innerHeight - navH);
-      const p = clamp((navH - r.top) / span, 0, 1);
-      render(p, Math.min(N - 1, Math.floor(p * N * 0.999)));
-    };
-    window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(upd); } }, { passive: true });
-    window.addEventListener('resize', upd);
-    // Small screens: the stage cycles through the steps while it's on screen
-    let timer = null, cyc = 0;
-    const stage = $('.pass-stage', pass);
-    const cycleIO = new IntersectionObserver((es) => {
-      const vis = es[0].isIntersecting;
-      clearInterval(timer);
-      if (vis && !scrollMode() && !reduce.matches) {
-        timer = setInterval(() => { cyc = (cyc + 1) % N; render((cyc + 0.99) / N, cyc); }, 3200);
+      if (svg) {
+        const progress = N > 1 ? current / (N - 1) : 0;
+        const x = 20 + 560 * progress;
+        cart.style.transform = `translateX(${x - 20}px)`;
+        trail.style.transform = `scaleX(${progress})`;
+        marks.forEach((m, i) => {
+          const on = current >= 1 && x >= marksX[i];
+          const rej = current >= 2 && i === rejected;
+          m.classList.toggle('on', on);
+          m.style.fill = rej ? 'var(--dim)' : '';
+          rings[i].classList.toggle('on', on && !rej);
+        });
       }
-    }, { threshold: 0.4 });
-    if (stage) cycleIO.observe(stage);
-    if (scrollMode()) upd(); else render(reduce.matches ? 1 : 0.2, reduce.matches ? N - 1 : 0);
-    if (reduce.matches || small.matches) steps.forEach((li) => li.classList.add('on'));
+      if (focus) choices[current].focus({ preventScroll: true });
+    };
+    choices.forEach((button, i) => {
+      button.disabled = false;
+      button.addEventListener('click', () => select(i));
+      button.addEventListener('keydown', (event) => {
+        const delta = ['ArrowRight', 'ArrowDown'].includes(event.key) ? 1 : ['ArrowLeft', 'ArrowUp'].includes(event.key) ? -1 : 0;
+        const target = event.key === 'Home' ? 0 : event.key === 'End' ? N - 1 : delta ? current + delta : null;
+        if (target === null) return;
+        event.preventDefault();
+        select(target, true);
+      });
+    });
+    if (previous) previous.addEventListener('click', () => select(current - 1, true));
+    if (next) next.addEventListener('click', () => select(current + 1, true));
+    if (actions) actions.hidden = false;
+    select(0);
   }
 
   /* ---------- Tabs ---------- */
