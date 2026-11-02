@@ -2,7 +2,6 @@
 'use strict';
 (async () => {
   document.getElementById('print-report').addEventListener('click', () => window.print());
-  if (window.matchMedia('(max-width:600px)').matches) document.getElementById('map-controls').open = false;
   const host = document.getElementById('interactive-map');
   const status = document.getElementById('map-status');
   const cap = s => String(s).charAt(0).toUpperCase() + String(s).slice(1);
@@ -28,8 +27,10 @@
     map.setMinZoom(zoom - 0.5);
     const nativeZoom = zoom + 2;
     map.setMaxZoom(Math.max(zoom, nativeZoom + 3, zoom + 3));
-    config.paths.forEach(p => L.polyline(p, {color:'#adbdb2', weight:2, dashArray:'5 4'}).addTo(map));
-    config.rows.forEach(p => L.polyline(p, {color:'#fff', weight:2}).addTo(map));
+    // Cart-path and row lines: one layer at a constant 60% opacity, switched by the "Cart paths" checkbox.
+    const lineLayer = L.layerGroup().addTo(map);
+    config.paths.forEach(p => L.polyline(p, {color:'#adbdb2', weight:2, dashArray:'5 4', opacity:.6}).addTo(lineLayer));
+    config.rows.forEach(p => L.polyline(p, {color:'#fff', weight:2, opacity:.6}).addTo(lineLayer));
     const pins = L.layerGroup().addTo(map);
     const detections = data.detections || [];
     const clips = data.clips || [];
@@ -59,8 +60,23 @@
     const classes = [...new Set(reportFindings.concat(items).map(d => d.class))].sort();
     const dates = [...new Set(reportFindings.concat(items).map(d => d.date).filter(Boolean))].sort();
     const filters = document.getElementById('map-filters');
+    const groupTitle = t => { const g = el('span', t); g.className = 'fgroup'; filters.append(g); };
     const inputs = new Map();
     const counts = new Map();
+    let heatMode = false, pinsRadio = null, heatRadio = null, heatLegendBox = null, linesBox = null;
+    groupTitle('View the marks as');
+    const viewToggle = el('div'); viewToggle.className = 'view-toggle'; viewToggle.setAttribute('role', 'radiogroup'); viewToggle.setAttribute('aria-label', 'Map view');
+    [['Pins', false], ['Heat map', true]].forEach(([name, heat]) => {
+      const label = el('label', name), radio = el('input');
+      radio.type = 'radio'; radio.name = 'map-view'; radio.checked = !heat;
+      label.append(radio); viewToggle.append(label);
+      radio.addEventListener('change', () => { if (radio.checked) setHeat(heat); });
+      if (heat) heatRadio = radio; else pinsRadio = radio;
+    });
+    filters.append(viewToggle);
+    heatLegendBox = el('div'); heatLegendBox.className = 'heat-legend'; heatLegendBox.hidden = true;
+    filters.append(heatLegendBox);
+    if (classes.length) groupTitle('Type');
     classes.forEach(c => {
       const label = el('label');
       const box = el('input'); box.type = 'checkbox'; box.checked = true;
@@ -152,7 +168,7 @@
       tick();
     }
     {
-      filters.append(el('span', 'Show:'));
+      groupTitle('Show');
       ['Photos','Clips','Marked areas'].forEach(name => {
         const label = el('label', name), box = el('input');
         box.type = 'checkbox'; box.checked = true; show[name] = box;
@@ -162,6 +178,12 @@
         const label = el('label', 'New this visit only'); onlyNew = el('input');
         onlyNew.type = 'checkbox'; label.append(onlyNew); filters.append(label);
         onlyNew.addEventListener('change', update);
+      }
+      {
+        const label = el('label', 'Cart paths'), box = el('input');
+        box.type = 'checkbox'; box.checked = true; label.append(box); filters.append(label);
+        linesBox = box;
+        box.addEventListener('change', () => { if (box.checked) lineLayer.addTo(map); else lineLayer.remove(); update(); });
       }
     }
     if (clips.length) {
@@ -183,8 +205,7 @@
     dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
     // Mound boxes on the photo: Source-report boxes and ages from the hub, or the model's guess until he checks it.
     const AGE_NAME = {NEW:'Fresh mound', '24H':'Recent mound', '1WK':'Week-old mound', OLD:'Old mound', UNS:'Mound, age unsure'};
-    const AGE_SHADE = {NEW:'#0b3d91', '24H':'#1f5fbf', '1WK':'#3f7fd6', OLD:'#6f9fd8', UNS:'#00E5FF'};   // blues, darker = newer; bright cyan = age unsure (stands out on grass and soil)
-    const AGE_TEXT = {UNS:'#00262b'};   // dark label text on the cyan, white on the blues
+    const BOX_CYAN = '#00E5FF', BOX_TEXT = '#00262b';   // every mound box is cyan (stands out on grass and soil); the age is in the label
     const boxLayer = dialog.querySelector('.photo-boxes'), boxesOn = document.getElementById('photo-boxes-on');
     function drawBoxes(d, shown) {
       if (!boxLayer || !boxesOn) return;
@@ -193,11 +214,11 @@
       boxesOn.parentElement.hidden = !shown || !(d.photo_boxes || []).length;
       if (!shown) return;
       (d.photo_boxes || []).forEach(b => {
-        const [x0, y0, x1, y1] = b.box, shade = AGE_SHADE[b.age] || AGE_SHADE.UNS;
+        const [x0, y0, x1, y1] = b.box, shade = BOX_CYAN;
         const r = el('div'); r.className = 'photo-box' + (b.reviewed ? '' : ' guess');
         Object.assign(r.style, {left:`${x0*100}%`, top:`${y0*100}%`, width:`${(x1-x0)*100}%`, height:`${(y1-y0)*100}%`, borderColor:shade});
         const t = el('span', (AGE_NAME[b.age] || AGE_NAME.UNS) + (b.reviewed ? '' : ' · model guess')); t.style.background = shade;
-        t.style.color = AGE_TEXT[b.age] || (AGE_SHADE[b.age] ? '#fff' : AGE_TEXT.UNS);
+        t.style.color = BOX_TEXT;
         if (x0 > 0.5) Object.assign(t.style, {left:'auto', right:'-3px'});   // keep the label on the photo
         if (y0 < 0.06) Object.assign(t.style, {bottom:'auto', top:'0'});
         r.append(t); boxLayer.append(r);
@@ -242,7 +263,8 @@
     }
     function openMini(d) {
       closeMini(); highlight(d);
-      const card = cards.get(d); if (card) card.scrollIntoView({block:'nearest', behavior:'instant'});
+      const card = cards.get(d); if (card && card.classList && card.classList.contains('more')) expandRail();
+      if (card) card.scrollIntoView({block:'nearest', behavior:'instant'});
       const box = el('div'); box.className = 'mini-player';
       const row = d.row && (/^row\b/i.test(d.row) ? d.row : `Row ${d.row}`);
       box.append(el('strong',[d.title,row,d.distance].filter(Boolean).join(' \u00b7 ')), badge(d));
@@ -252,6 +274,7 @@
       const state = {box}; mini = state;
       const cams = d.cams || {};
       const sides = ['R','L'].filter(k => cams[k] && /^clips\/[A-Za-z0-9_-]+\.mp4$/.test(cams[k].src));
+      let hasMedia = sides.length > 0;
       sides.sort((a,b) => (cams[b].boxes || []).length - (cams[a].boxes || []).length);
       if (sides.length) {
         const stage=el('div'); stage.className='clip-stage';
@@ -268,9 +291,9 @@
         const tick=()=>{ if(mini!==state) return; draw(c,boxes); requestAnimationFrame(tick); }; requestAnimationFrame(tick);
       } else {
         const src=d.report ? d.crop : localImage(d.crop);
-        if(src) {const img=el('img'); img.src=src; img.alt=d.title || 'Photo'; box.append(img);}
+        if(src) {const img=el('img'); img.src=src; img.alt=d.title || 'Photo'; box.append(img); hasMedia=true;}
       }
-      button('Expand',()=>{closeMini(); if(sides.length) openClip(d); else openPhoto(d);});
+      if(hasMedia) button('Expand',()=>{closeMini(); if(sides.length) openClip(d); else openPhoto(d);});   // no photo or clip: nothing to expand
       button('Close',closeMini); box.append(controls);
       if(window.matchMedia('(max-width:600px)').matches || !positioned(d)) {
         box.className+=' mini-dock'; host.append(box);
@@ -280,6 +303,7 @@
       }
     }
     function openFinding(d) {
+      if (heatMode) setHeat(false);
       if (positioned(d)) map.flyTo([d.y,d.x], Math.min(nativeZoom + 2, zoom + 2), {animate:!window.matchMedia('(prefers-reduced-motion: reduce)').matches});
       openMini(d);
     }
@@ -295,6 +319,15 @@
       body.append(badge(d)); card.append(body); rail.append(card); cards.set(d,card);
       card.addEventListener('click', () => openFinding(d));
     });
+    // Phone: the first 5 findings, then a "Show all" button (the page was 15 000 px tall with 119 cards).
+    const PHONE_TOP = 5;
+    let showAll = null;
+    function expandRail() { cards.forEach(c => c.classList && c.classList.remove('more')); if (showAll) { showAll.remove(); showAll = null; } }
+    if (window.matchMedia('(max-width:600px)').matches && cards.size > PHONE_TOP) {
+      let n = 0; cards.forEach(c => { if (++n > PHONE_TOP && c.classList) c.classList.add('more'); });
+      showAll = el('button', `Show all ${cards.size} findings`); showAll.type = 'button'; showAll.className = 'show-all';
+      showAll.addEventListener('click', expandRail); if (rail.after) rail.after(showAll);
+    }
     function popup(d) {
       const box = el('div');
       const crop = localImage(d.crop);
@@ -326,6 +359,101 @@
         if (!marker.compact) full.push(point);
         marker.setIcon(numberIcon(d, marker.compact));
       });
+    }
+    // Heat map view: where the marks now shown cluster. A plain canvas layer, nothing fetched.
+    // A shown mark adds heat within HEAT_RADIUS_M metres. Its weight is the number of mound boxes the operator
+    // reviewed on its photo (a mark with none counts 1; unreviewed model guesses never count).
+    // A weight of HEAT_FULL, alone or overlapping, reaches the top colour.
+    const HEAT_RADIUS_M = 8, HEAT_FULL = 5;
+    const HEAT_STOPS = [[0,[43,131,186]],[.35,[102,194,165]],[.65,[254,224,139]],[1,[213,62,79]]];
+    const HEAT_LUT = Array.from({length:256}, (_, v) => {
+      if (!v) return [0,0,0,0];
+      const t = v / 255;
+      let i = 1; while (i < HEAT_STOPS.length - 1 && t > HEAT_STOPS[i][0]) i++;
+      const [t0,c0] = HEAT_STOPS[i-1], [t1,c1] = HEAT_STOPS[i], f = (t - t0) / (t1 - t0);
+      return [0,1,2].map(j => Math.round(c0[j] + (c1[j] - c0[j]) * f)).concat(Math.round(255 * Math.min(.92, .4 + .6 * t)));
+    });
+    let heatLayer = null, heatCanvas = null;
+    function heatPoints() {
+      const pts = [];
+      markers.forEach((m, d) => {
+        const p = positioned(d) ? [d.y, d.x] : (d.region && d.region[0]);
+        const w = Math.max(1, (d.photo_boxes || []).filter(b => b.reviewed !== false).length);
+        if (p) pts.push([p[0], p[1], w]);
+      });
+      return pts;
+    }
+    function hideHeat() { if (heatCanvas) heatCanvas.style.visibility = 'hidden'; }
+    function paintHeat() {
+      if (!heatCanvas) return;
+      const size = map.getSize(), k = 0.5;                       // half resolution: the surface is soft anyway
+      const w = Math.max(1, Math.round(size.x * k)), h = Math.max(1, Math.round(size.y * k));
+      heatCanvas.width = w; heatCanvas.height = h;
+      heatCanvas.style.width = size.x + 'px'; heatCanvas.style.height = size.y + 'px';
+      heatCanvas.style.visibility = 'visible';
+      L.DomUtil.setPosition(heatCanvas, map.containerPointToLayerPoint([0,0]));
+      const g = heatCanvas.getContext('2d');
+      g.globalCompositeOperation = 'source-over'; g.fillStyle = '#000'; g.fillRect(0, 0, w, h);
+      const metresPerPx = 1 / Math.pow(2, map.getZoom());
+      const r = Math.max(8, HEAT_RADIUS_M / metresPerPx) * k;
+      g.globalCompositeOperation = 'lighter';                    // grey level adds up where marks overlap
+      heatPoints().forEach(p => {
+        const c = map.latLngToContainerPoint(p), x = c.x * k, y = c.y * k;
+        if (x < -r || y < -r || x > w + r || y > h + r) return;
+        const grad = g.createRadialGradient(x, y, 0, x, y, r);
+        grad.addColorStop(0, 'rgba(255,255,255,' + (Math.min(HEAT_FULL, p[2]) / HEAT_FULL) + ')');
+        grad.addColorStop(1, 'rgba(255,255,255,0)');
+        g.fillStyle = grad; g.fillRect(x - r, y - r, 2 * r, 2 * r);
+      });
+      const img = g.getImageData(0, 0, w, h), px = img.data;
+      for (let i = 0; i < px.length; i += 4) {
+        const c = HEAT_LUT[px[i]]; px[i] = c[0]; px[i+1] = c[1]; px[i+2] = c[2]; px[i+3] = c[3];
+      }
+      g.putImageData(img, 0, 0);
+      // Only where the cart scanned: keep the heat within HEAT_RADIUS_M of a scanned row line, nowhere else.
+      if (g.beginPath && g.stroke && config.rows && config.rows.length) {
+        g.globalCompositeOperation = 'destination-in';
+        g.lineWidth = Math.max(4, 2 * HEAT_RADIUS_M / metresPerPx * k); g.lineCap = 'round'; g.lineJoin = 'round'; g.strokeStyle = '#000';
+        g.beginPath();
+        config.rows.forEach(r => r.forEach((q, i) => { const c = map.latLngToContainerPoint(q); if (i) g.lineTo(c.x * k, c.y * k); else g.moveTo(c.x * k, c.y * k); }));
+        g.stroke(); g.globalCompositeOperation = 'source-over';
+      }
+    }
+    function buildHeatLegend() {
+      const bar = el('canvas'); bar.width = 120; bar.height = 10;
+      const g = bar.getContext('2d');
+      for (let x = 0; x < 120; x++) { const c = HEAT_LUT[1 + Math.round(x / 119 * 254)]; g.fillStyle = `rgb(${c[0]},${c[1]},${c[2]})`; g.fillRect(x, 0, 1, 10); }
+      heatLegendBox.append(el('span', 'none'), bar, el('span', `about ${Math.round(HEAT_FULL / (2 * HEAT_RADIUS_M) * 100)}+ marked spots per 100 m of row`), el('span', 'Shown only along rows the cart scanned.'));
+    }
+    function setHeat(on) {
+      if (on === heatMode) return;
+      heatMode = on;
+      closeMini();
+      if (on) {
+        if (!heatLayer) {
+          heatLayer = new (L.Layer.extend({
+            onAdd(m) {
+              heatCanvas = el('canvas'); heatCanvas.className = 'heat-canvas'; heatCanvas.setAttribute('aria-hidden', 'true');
+              (m.getPane('heat') || m.createPane('heat')).style.zIndex = 450;   // above the cart-path lines (overlay pane 400), below pins
+              m.getPane('heat').appendChild(heatCanvas);
+              m.on('zoomstart', hideHeat); m.on('moveend', paintHeat); m.on('resize', paintHeat);   // setHeat() calls update(), which paints
+            },
+            onRemove(m) {
+              m.off('zoomstart', hideHeat); m.off('moveend', paintHeat); m.off('resize', paintHeat);
+              heatCanvas.remove(); heatCanvas = null;
+            }
+          }))();
+        }
+        if (!heatLegendBox.children.length) buildHeatLegend();
+        pins.remove(); heatLayer.addTo(map);
+      } else {
+        if (heatLayer) heatLayer.remove();
+        pins.addTo(map);
+      }
+      if (pinsRadio) pinsRadio.checked = !on;
+      if (heatRadio) heatRadio.checked = on;
+      heatLegendBox.hidden = !on;
+      update();
     }
     function update() {
       pins.clearLayers(); markers.clear();
@@ -375,11 +503,37 @@
       });
       const note=document.getElementById('no-position');
       if(note) {note.textContent=missing ? `${missing} without a position` : ''; note.hidden=!missing;}
-      status.textContent = `${markers.size} marks shown`;
+      status.textContent = heatMode ? `${markers.size} marks in the heat map` : `${markers.size} marks shown`;
       declutter();
+      if (heatMode) paintHeat();
+      syncUrl();
     }
     map.on('zoomend', declutter);
+    // The view lives in the URL (?view=heatmap&new=1&date=..&hide=..) so a link opens the same filters.
+    function viewParams() {
+      const p = new URLSearchParams();
+      if (heatMode) p.set('view', 'heatmap');
+      if (onlyNew && onlyNew.checked) p.set('new', '1');
+      if (select.value) p.set('date', select.value);
+      const hide = classes.filter(c => !inputs.get(c).checked); if (hide.length) p.set('hide', hide.join(','));
+      const off = ['Photos','Clips','Marked areas'].filter(n => show[n] && !show[n].checked); if (off.length) p.set('off', off.join(','));
+      if (linesBox && !linesBox.checked) p.set('lines', '0');
+      return p;
+    }
+    function syncUrl() {
+      try { const q = viewParams().toString(); history.replaceState(null, '', location.pathname + (q ? '?' + q : '') + location.hash); } catch (e) {}
+    }
+    function restoreView() {
+      let p; try { p = new URLSearchParams(location.search); } catch (e) { return; }
+      if (p.get('date') && dates.includes(p.get('date'))) select.value = p.get('date');
+      if (p.get('new') === '1' && onlyNew) onlyNew.checked = true;
+      (p.get('hide') || '').split(',').forEach(c => { if (inputs.get(c)) inputs.get(c).checked = false; });
+      (p.get('off') || '').split(',').forEach(n => { if (show[n]) show[n].checked = false; });
+      if (p.get('lines') === '0' && linesBox) { linesBox.checked = false; lineLayer.remove(); }
+    }
+    restoreView();
     update();
+    try { if (new URLSearchParams(location.search).get('view') === 'heatmap') setHeat(true); } catch (e) {}
     document.documentElement.classList.add('map-ready');
   } catch (err) {
     document.documentElement.classList.add('map-failed');
