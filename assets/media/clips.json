@@ -10,6 +10,50 @@
   ],
   "clips": [
     {
+      "id": "cta-orchard",
+      "public": true,
+      "status": "ready",
+      "sources": {
+        "mp4": "/assets/media/cta-orchard/cta-orchard-1080.mp4",
+        "mp4_720": "/assets/media/cta-orchard/cta-orchard-720.mp4",
+        "poster": "/assets/media/cta-orchard/cta-orchard-poster.webp",
+        "mp4_portrait": "/assets/media/cta-orchard/cta-orchard-portrait.mp4"
+      },
+      "fps": 24,
+      "duration": 9.0,
+      "category": "cart",
+      "labels": "none",
+      "title": "The cart in an orchard",
+      "caption": "October orchard footage of the cart and its camera bar. Camera footage; no model overlay.",
+      "site": "Okanagan orchard",
+      "date": "2026-10",
+      "camera": "Pixel phone",
+      "feature": false,
+      "in_log": false,
+      "alt": "The cart's camera bar and GPS antenna in an orchard in fall"
+    },
+    {
+      "id": "stakes-c1-model",
+      "public": false,
+      "status": "ready",
+      "sources": {
+        "mp4": "/assets/media/stakes-c1-model/stakes-c1-model-1080.mp4",
+        "mp4_720": "/assets/media/stakes-c1-model/stakes-c1-model-720.mp4",
+        "poster": "/assets/media/stakes-c1-model/stakes-c1-model-poster.webp"
+      },
+      "fps": 15,
+      "duration": 9.8,
+      "category": "stakes",
+      "labels": "model-unreviewed",
+      "title": "Irrigation stakes: cart camera",
+      "caption": "Early stake detector (model output; prototype, not validated) on a cart ground camera: boxes mark upright sprinkler stakes. Demo-only model, trained on footage that includes this pass.",
+      "site": "Okanagan orchard",
+      "date": "2026-10",
+      "feature": false,
+      "in_log": false,
+      "camera": "Cart ground camera"
+    },
+    {
       "id": "field-hero",
       "status": "ready",
       "public": true,
@@ -27,7 +71,8 @@
         "mp4_portrait": "/assets/media/field-hero/field-hero-portrait.mp4"
       },
       "fps": 24,
-      "duration": 12.0
+      "duration": 12.0,
+      "in_log": false
     },
     {
       "id": "field-tracking",
@@ -46,7 +91,8 @@
       },
       "fps": 24,
       "duration": 7.96,
-      "site": "Okanagan orchard"
+      "site": "Okanagan orchard",
+      "in_log": false
     },
     {
       "id": "field-crossbar",
@@ -103,7 +149,8 @@
       "caption": "The cart's OAK-D wide camera down a vineyard row, raw.",
       "site": "Okanagan vineyard",
       "date": "2026-10",
-      "camera": "OAK-D wide"
+      "camera": "OAK-D wide",
+      "in_log": false
     },
     {
       "id": "mounds-cluster",
@@ -121,7 +168,8 @@
       "title": "Gopher mounds: a cluster",
       "caption": "Early mound detector (model output; prototype, not validated) on a cart ground camera: boxes mark mounds, with the model's age guess and confidence. Demo-only model, trained on footage that includes this pass.",
       "site": "Okanagan orchard",
-      "date": "2026-10"
+      "date": "2026-10",
+      "in_log": false
     },
     {
       "id": "stakes-model-01",
@@ -139,7 +187,8 @@
       "title": "Irrigation stakes: leaning and upright",
       "caption": "Early stake detector (model output; prototype, not validated) on phone video: boxes mark leaning and upright sprinkler stakes. Demo-only model, trained on footage that includes this pass.",
       "site": "Okanagan orchard",
-      "date": "2026-10"
+      "date": "2026-10",
+      "in_log": false
     },
     {
       "id": "oak-vineyard-row-2",
@@ -347,7 +396,8 @@
       "title": "Mound-model output: second row",
       "caption": "Early mound detector (model output; prototype, not validated) on a cart ground camera: boxes mark mounds, with the model's age guess and confidence. Demo-only model, trained on footage that includes this pass.",
       "site": "Okanagan orchard",
-      "date": "2026-10"
+      "date": "2026-10",
+      "in_log": false
     },
     {
       "id": "gophers-age-01",
@@ -436,7 +486,8 @@
       },
       "width": 600,
       "height": 800,
-      "date": "2026-10"
+      "date": "2026-10",
+      "in_log": false
     },
     {
       "id": "photo-crossbar",

@@ -83,6 +83,15 @@
   .opener::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, var(--bg) 2%, rgba(10,21,16,.6) 38%, rgba(10,21,16,.1) 70%, rgba(10,21,16,.5) 100%); }
   .opener .wrap { width: 100%; padding-bottom: 2rem; }
   .opener .caption { position: absolute; top: calc(1.25rem); left: var(--gutter); z-index: 3; }
+  /* #platform: photo first, text below it (Ryan 2026-11-01: text must not cover the cart) */
+  #platform .opener { display: block; min-height: 0; }
+  #platform .opener::before { display: none; }
+  #platform .opener .media { position: relative; inset: auto; z-index: 0; aspect-ratio: 20 / 9; overflow: hidden; }
+  #platform .opener .media > img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; display: block; }
+  #platform .opener .media::after { content: ""; position: absolute; inset: auto 0 0 0; height: 28%; background: linear-gradient(0deg, var(--bg), rgba(10,21,16,0)); pointer-events: none; }
+  #platform .opener .wrap { position: relative; z-index: 1; margin-top: clamp(-3.5rem, -4vw, -1.5rem); padding-bottom: 0; }
+  #platform .opener > .vf { bottom: auto; aspect-ratio: 20 / 9; }
+  @media (max-width: 54rem) { #platform .opener .media, #platform .opener > .vf { aspect-ratio: 4 / 3; } }
   .outcomes { list-style: none; margin: 0 0 clamp(4rem, 8vw, 7rem); padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
   .outcomes li { border-top: 1px solid var(--border); padding-top: 1.5rem; }
   .outcomes .ico { width: 2.6rem; height: 2.6rem; border-radius: 12px; display: grid; place-items: center; background: var(--mint-soft); color: var(--mint); margin-bottom: 1.25rem; }
@@ -105,6 +114,7 @@
   .layer .layer-tag { position: absolute; left: 1rem; bottom: 1rem; z-index: 4; max-width: calc(100% - 2rem); }
   .layer .shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(7,16,12,.75), rgba(7,16,12,0) 45%); z-index: 2; pointer-events: none; }
   .layer.review > img, .layer.report > img { object-fit: contain; background: var(--bg-deep); }
+  .pass-stage .layer.report { display: block; }  /* not the home .report grid */
   .pass-actions { display: flex; justify-content: space-between; align-items: center; gap: .75rem; margin-top: 1rem; }
   .pass-actions[hidden] { display: none; }
   .pass-actions button { min-height: 2.75rem; padding: .65rem 1rem; border: 1px solid var(--border-hi); border-radius: 999px; color: var(--text); background: var(--card); font: 500 .8rem var(--mono); cursor: pointer; }
@@ -295,6 +305,27 @@
   @media (max-width: 58rem) { .sample-grid { grid-template-columns: 1fr; } .sample-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .sample-card img { height: 100%; border-bottom: 0; border-right: 1px solid var(--border); } }
   @media (max-width: 36rem) { .sample-card { display: flex; } .sample-card img { height: auto; border-right: 0; border-bottom: 1px solid var(--border); } .samples-intro { padding-top: calc(var(--nav-h) + 3rem); } }
   @media (prefers-reduced-motion: reduce) { .sample-card { transition: none; } .sample-card:hover { transform: none; } }
+  /* What we do strip (R4 2026-11-01) */
+  #what { padding: clamp(3.5rem, 7vw, 5.5rem) 0; }
+  #what h2 { font-size: clamp(1.7rem, 3.1vw, 2.6rem); max-width: 30ch; line-height: 1.12; }
+  #what .what-lead { max-width: 62ch; margin-top: .9rem; }
+  .what-cards { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+  .what-card { border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg); overflow: hidden; display: flex; flex-direction: column; }
+  .what-card .sees-media { border: 0; border-radius: 0; border-bottom: 1px solid var(--border); }
+  .what-card .sees-media > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .what-card .body { padding: 1.1rem 1.3rem 1.3rem; display: flex; flex-direction: column; gap: .5rem; flex: 1; }
+  .what-card .body > .chip { align-self: flex-start; }
+  .what-card .tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .what-card h3 { font-size: 1.2rem; margin: .2rem 0 0; }
+  .what-card p { margin: 0; color: var(--muted); }
+  .what-card .cap { margin-top: auto; padding-top: .5rem; font-size: .78rem; color: var(--dim); line-height: 1.45; }
+  .what-steps { list-style: none; margin: 1.4rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+  .what-steps li { border-top: 1px solid var(--border); padding-top: .8rem; }
+  .what-steps .k { font-family: var(--mono); font-size: .78rem; color: var(--mint); margin-right: .5rem; }
+  .what-steps b { font-weight: 700; }
+  .what-steps p { margin: .3rem 0 0; color: var(--muted); font-size: .95rem; }
+  .what-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.6rem; }
+  @media (max-width: 58rem) { .what-cards, .what-steps { grid-template-columns: 1fr; } }
 </style>
 </head>
 
@@ -332,7 +363,7 @@
        Until that clip is encoded, the still below shows with a slow push-in. -->
   <section class="hero" id="top" aria-labelledby="hero-title">
     <div class="hero-media media grain" data-clip="field-hero" data-autoplay="eager">
-      <img class="still-drift" src="/assets/cart-orchard-row.webp" width="600" height="800" alt="" fetchpriority="high">
+      <img class="still-drift" src="/assets/media/field-hero/field-hero-poster.webp" width="1280" height="720" alt="" fetchpriority="high">
     </div>
     <div class="hero-shade"></div>
     <div class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -367,6 +398,63 @@
     </div>
   </section>
 
+  <!-- ========== What we do (R4 2026-11-01) ========== -->
+  <section id="what" class="band" aria-labelledby="what-title">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">What we do</p>
+        <h2 id="what-title">Row-by-row field data, checked by a person.</h2>
+        <p class="lead what-lead">Today, that is a human-pushed sensor cart. Its cameras record each row it passes; early prototype models flag possible gopher mounds and leaning irrigation stakes, and a person confirms what goes in a report. A leaf scanner is in bench testing.</p>
+      </div>
+      <ul class="what-cards">
+        <li class="what-card reveal" style="--i:0">
+          <div class="sees-media" data-clip="mounds-week-b">
+            <img src="/assets/media/mounds-week-b/mounds-week-b-poster.webp" width="1280" height="720" loading="lazy" alt="A cart ground camera frame with a prototype model box on a gopher mound">
+            <div class="shade"></div>
+          </div>
+          <div class="body">
+            <div class="tags"><span class="chip mint"><span class="dot"></span>Prototype model</span><span class="chip prov model-reviewed">Model output, checked by a person</span></div>
+            <h3>Gopher mounds</h3>
+            <p>Ground cameras record each row. An early model flags frames that may show mounds; a person confirms or rejects each one before it counts.</p>
+            <p class="cap">Okanagan orchard, October 2026. Model output; prototype, not validated. Demo-only model, trained on footage that includes this pass.</p>
+          </div>
+        </li>
+        <li class="what-card reveal" style="--i:1">
+          <div class="sees-media" data-clip="stakes-c1-model">
+            <img src="/assets/media/stakes-c1-model/stakes-c1-model-poster.webp" width="1280" height="720" loading="lazy" alt="Cart ground camera frame with prototype model boxes on irrigation stakes">
+            <div class="shade"></div>
+          </div>
+          <div class="body">
+            <div class="tags"><span class="chip amber"><span class="dot"></span>In development</span><span class="chip prov model-unreviewed">Model output, not yet checked</span></div>
+            <h3>Irrigation stakes</h3>
+            <p>An early stake model marks sprinkler stakes in cart camera footage. Stake checks are a direction growers have shown interest in.</p>
+            <p class="cap">Okanagan orchard, October 2026. Model output; prototype, not validated; not yet checked by a person. Demo-only model, trained on footage that includes this pass.</p>
+          </div>
+        </li>
+        <li class="what-card reveal" style="--i:2">
+          <div class="sees-media">
+            <img src="/assets/leaf-spectrum-2026-10.svg" width="1200" height="675" loading="lazy" alt="Chart of one apple leaf's relative reflectance across 18 bands from 410 to 940 nanometres, read on the bench">
+          </div>
+          <div class="body">
+            <span class="chip amber"><span class="dot"></span>Bench prototype</span>
+            <h3>Leaf scanner</h3>
+            <p>Reads relative leaf reflectance across 18 bands, 410&ndash;940 nm. It is not yet calibrated against lab tests, so it gives no nutrient advice; pairing it with lab tests is planned for 2027.</p>
+            <p class="cap">One apple leaf, bench reading, October 2026. Raw relative reflectance.</p>
+          </div>
+        </li>
+      </ul>
+      <ol class="what-steps reveal">
+        <li><span class="k">01</span><b>Walk</b><p>Push the cart down each row. Cameras, lidar and GPS record as it goes.</p></li>
+        <li><span class="k">02</span><b>Flag</b><p>Early models flag frames worth a look. A person confirms or rejects each one before it counts.</p></li>
+        <li><span class="k">03</span><b>Report</b><p>You get a map of reviewed marks by row and location, as leads to check on the ground.</p></li>
+      </ol>
+      <div class="what-links">
+        <a class="btn primary" href="/sample-report/">See a sample report</a>
+        <a class="btn ghost" href="#platform">How a pass works</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== Problem ========== -->
   <section id="problem">
     <div class="wrap">
@@ -389,7 +477,7 @@
   <section id="platform">
     <div class="opener" data-zoom>
       <div class="media">
-        <img class="still-drift" src="/assets/cart-orchard-lake.webp" width="1920" height="1080" loading="lazy" alt="The sensor cart between vineyard rows, October 2026">
+        <img class="still-drift" src="/assets/cart-vineyard-view-2026-10.webp" width="1920" height="864" loading="lazy" alt="The sensor cart at the head of a vineyard row in fall, Okanagan, October 2026">
       </div>
       <div class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       <div class="wrap">
@@ -442,7 +530,7 @@
                 <span class="chip layer-tag">Source report annotations</span>
               </div>
               <div class="layer report" data-step="3" aria-hidden="true" inert>
-                <img src="/sample-report/orchard-c/preview.webp" loading="lazy" alt="Anonymous ground scouting report with a schematic row map">
+                <img src="/assets/media/report-stills/orchard-c-summary.webp" loading="lazy" alt="Anonymous ground scouting report summary: rows scanned, row covered and operator marks">
                 <a class="chip layer-tag" href="/sample-report/orchard-c/">Explore this report &#8599;</a>
               </div>
             </div>
@@ -579,28 +667,28 @@
       </div>
       <div class="sample-grid">
         <a class="sample-card" href="/sample-report/orchard-a/">
-          <img src="/sample-report/orchard-a/preview.webp" width="1440" height="900" loading="lazy" alt="Orchard A sample report with a schematic row map">
+          <img src="/assets/media/report-stills/orchard-a-look.webp" width="1440" height="900" loading="lazy" alt="Orchard A sample report: rows ranked by operator marks">
           <div class="sample-card-copy"><span class="k">01 / OCTOBER 2026</span><h3>Orchard A</h3>
             <p>A ground scouting report with an interactive row map and 78 camera photos.</p>
             <span class="sample-open">Explore this report <span aria-hidden="true">&#8599;</span></span>
           </div>
         </a>
         <a class="sample-card" href="/sample-report/orchard-b/">
-          <img src="/sample-report/orchard-b/preview.webp" width="1440" height="900" loading="lazy" alt="Orchard B sample report with a schematic row map">
+          <img src="/assets/media/report-stills/orchard-b-look.webp" width="1440" height="900" loading="lazy" alt="Orchard B sample report: rows ranked by operator marks">
           <div class="sample-card-copy"><span class="k">02 / OCTOBER 2026</span><h3>Orchard B</h3>
             <p>A ground scouting report with an interactive row map and 40 camera photos.</p>
             <span class="sample-open">Explore this report <span aria-hidden="true">&#8599;</span></span>
           </div>
         </a>
         <a class="sample-card" href="/sample-report/orchard-c/">
-          <img src="/sample-report/orchard-c/preview.webp" width="1440" height="900" loading="lazy" alt="Orchard C sample report with a schematic row map">
+          <img src="/assets/media/report-stills/orchard-c-look.webp" width="1440" height="900" loading="lazy" alt="Orchard C sample report: rows ranked by operator marks">
           <div class="sample-card-copy"><span class="k">03 / OCTOBER 2026</span><h3>Orchard C</h3>
             <p>A ground scouting report with an interactive row map and 12 camera photos.</p>
             <span class="sample-open">Explore this report <span aria-hidden="true">&#8599;</span></span>
           </div>
         </a>
       </div>
-      <p class="sample-note">These are anonymous copies of real field reports. Grower names, exact visit dates and location details have been removed. The maps show relative row layouts without aerial imagery. Findings are leads to check on the ground.</p>
+      <p class="sample-note">These are anonymous copies of real field reports. Grower names, exact visit dates and location details have been removed. The maps show the scanned rows on a 2018 public aerial photo, rotated and cropped to the scanned blocks. Findings are leads to check on the ground.</p>
       <div class="report-foot"><a class="btn ghost" href="/sample-report/">Browse the sample reports <span aria-hidden="true">&#8594;</span></a></div>
     </div>
   </section>
@@ -691,8 +779,8 @@
   <section id="contact">
     <div class="wrap">
       <div class="cta-band reveal">
-        <div class="media grain" data-clip="field-demo">
-          <img class="still-drift" src="/assets/media/field-demo/field-demo-poster.webp" width="1280" height="720" loading="lazy" alt="">
+        <div class="media grain" data-clip="cta-orchard">
+          <img class="still-drift" src="/assets/media/cta-orchard/cta-orchard-poster.webp" width="1600" height="900" loading="lazy" alt="">
         </div>
         <div class="cta-inner">
           <div>

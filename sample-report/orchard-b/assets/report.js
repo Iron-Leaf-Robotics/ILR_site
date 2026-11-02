@@ -22,7 +22,7 @@
     const config = JSON.parse(host.dataset.map);
     const map = L.map(host, {crs:L.CRS.Simple, minZoom:-5, attributionControl:false, maxBounds:config.bounds,
       maxBoundsViscosity:1, zoomSnap:0.25});
-    // Public sample: local schematic only, no aerial image or location.
+    L.imageOverlay('aerial.webp', config.bounds).addTo(map);
     map.fitBounds(config.bounds);
     const zoom = map.getZoom();
     map.setMinZoom(zoom - 0.5);

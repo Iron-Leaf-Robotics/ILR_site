@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Bench reading of one apple leaf: relative reflectance from 410 to 940 nanometres">
+<rect width="1200" height="675" fill="#0A1510"/>
+<rect x="120.0" y="30" width="170.2" height="515" fill="#3B6FD8" opacity=".10"/>
+<text x="205.1" y="74" fill="#F1F6F3" font-size="34" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif">blue</text>
+<rect x="290.2" y="30" width="170.2" height="515" fill="#3FAE6A" opacity=".10"/>
+<text x="375.3" y="74" fill="#F1F6F3" font-size="34" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif">green</text>
+<rect x="460.4" y="30" width="208.0" height="515" fill="#D8573B" opacity=".10"/>
+<text x="564.4" y="74" fill="#F1F6F3" font-size="34" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif">red</text>
+<rect x="668.4" y="30" width="94.5" height="515" fill="#B04C8A" opacity=".10"/>
+<text x="715.6" y="74" fill="#F1F6F3" font-size="34" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif">red edge</text>
+<rect x="762.9" y="30" width="397.1" height="515" fill="#5B5F70" opacity=".10"/>
+<text x="961.5" y="74" fill="#F1F6F3" font-size="34" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif">beyond red</text>
+<line x1="120" x2="1160" y1="545.0" y2="545.0" stroke="#1F3A2D" stroke-width="1"/>
+<text x="106" y="551.0" fill="#9DB2A6" font-size="30" text-anchor="end" font-family="Menlo, Consolas, monospace">0.0</text>
+<line x1="120" x2="1160" y1="330.4" y2="330.4" stroke="#1F3A2D" stroke-width="1"/>
+<text x="106" y="336.4" fill="#9DB2A6" font-size="30" text-anchor="end" font-family="Menlo, Consolas, monospace">0.5</text>
+<line x1="120" x2="1160" y1="115.8" y2="115.8" stroke="#1F3A2D" stroke-width="1"/>
+<text x="106" y="121.8" fill="#9DB2A6" font-size="30" text-anchor="end" font-family="Menlo, Consolas, monospace">1.0</text>
+<text x="120.0" y="587" fill="#9DB2A6" font-size="30" text-anchor="middle" font-family="Menlo, Consolas, monospace">400</text>
+<text x="498.2" y="587" fill="#9DB2A6" font-size="30" text-anchor="middle" font-family="Menlo, Consolas, monospace">600</text>
+<text x="876.4" y="587" fill="#9DB2A6" font-size="30" text-anchor="middle" font-family="Menlo, Consolas, monospace">800</text>
+<text x="640.0" y="653" fill="#9DB2A6" font-size="32" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif">Wavelength (nm)</text>
+<text transform="translate(40 287.5) rotate(-90)" fill="#9DB2A6" font-size="32" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif">Reflectance</text>
+<polyline points="138.9,435.2 186.2,487.8 233.5,487.0 280.7,472.9 328.0,446.4 375.3,408.7 422.5,396.8 469.8,378.9 517.1,488.0 583.3,440.9 649.5,429.4 696.7,340.5 744.0,226.8 800.7,213.0 895.3,231.1 989.8,150.6 1065.5,225.1 1141.1,220.7" fill="none" stroke="#5FE3A1" stroke-width="6" stroke-linejoin="round"/>
+<circle cx="138.9" cy="435.2" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="186.2" cy="487.8" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="233.5" cy="487.0" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="280.7" cy="472.9" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="328.0" cy="446.4" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="375.3" cy="408.7" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="422.5" cy="396.8" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="469.8" cy="378.9" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="517.1" cy="488.0" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="583.3" cy="440.9" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="649.5" cy="429.4" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="696.7" cy="340.5" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="744.0" cy="226.8" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="800.7" cy="213.0" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="895.3" cy="231.1" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="989.8" cy="150.6" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="1065.5" cy="225.1" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+<circle cx="1141.1" cy="220.7" r="9" fill="#0A1510" stroke="#5FE3A1" stroke-width="4.5"/>
+</svg>
