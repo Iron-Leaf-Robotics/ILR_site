@@ -53,7 +53,7 @@
     }
     function metadata(id, d) {
       const node = document.getElementById(id); node.replaceChildren();
-      const position = 'Location removed in this public sample';
+      const position = 'Coordinates removed in this public sample';
       Object.entries({Row:d.row, Position:position, Time:[d.date,d.time_local].filter(Boolean).join(' '), Camera:d.camera, Held:Number.isFinite(d.held_s) ? `${Math.round(d.held_s)} s` : '', 'First seen':d.first_seen}).forEach(([key,value]) => { node.append(el('dt',key),el('dd',value === undefined || value === '' ? '\u2014' : value)); });
     }
     const classes = [...new Set(reportFindings.concat(items).map(d => d.class))].sort();
