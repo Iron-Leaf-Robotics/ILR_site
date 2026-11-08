@@ -269,9 +269,10 @@
   .about-card { position: relative; aspect-ratio: 4 / 5; border-radius: var(--radius-lg); border: 1px solid var(--border); overflow: hidden; background: radial-gradient(30rem 24rem at 30% 20%, rgba(95,227,161,.12), transparent 60%), var(--bg-deep); display: grid; place-items: center; }
   .about-card .logo-mark { width: 46%; color: var(--text); opacity: .92; }
   .about-card .place { position: absolute; left: 1rem; bottom: 1rem; }
+  .about-card .about-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .prose p { color: var(--muted); }
   .prose p.big { color: var(--text); font-size: 1.25rem; line-height: 1.5; }
-  @media (max-width: 54rem) { .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } .about-card { aspect-ratio: 16 / 10; } .about-card .logo-mark { width: 26%; } }
+  @media (max-width: 54rem) { .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } .about-card { aspect-ratio: 16 / 10; } .about-card .logo-mark { width: 26%; } .about-card.has-photo { aspect-ratio: 4 / 5; width: 100%; max-width: 26rem; } }
 
   /* ===== Contact ===== */
   #contact { padding-top: 0; }
@@ -756,10 +757,10 @@
   <!-- ========== About ========== -->
   <section id="about">
     <div class="wrap about-grid">
-      <!-- Swap in the founder photo (you beside the cart in a row) when it's shot. -->
-      <div class="about-card reveal" aria-hidden="true">
-        <svg class="logo-mark" viewBox="0 0 394 424"><use href="#ilr-mark"/></svg>
-        <span class="chip place"><span class="dot" style="color:var(--mint)"></span>Kelowna, BC</span>
+      <!-- Founder photo: still from the YC founder video take, 4:5 crop (2026-11-07). -->
+      <div class="about-card has-photo reveal">
+        <img class="about-photo" src="/assets/about-founder.webp" width="960" height="1200" loading="lazy" alt="Ryan Collins in an Okanagan vineyard">
+        <span class="chip place" aria-hidden="true"><span class="dot" style="color:var(--mint)"></span>Kelowna, BC</span>
       </div>
       <div class="reveal" style="--i:1">
         <p class="eyebrow"><span class="num">08</span>About</p>
